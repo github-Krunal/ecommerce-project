@@ -4,10 +4,14 @@ export const routes: Routes = [
   {
     path:'',
     pathMatch:'full',
-    redirectTo:'admin'
+    redirectTo:'dashboard'
   },
   {
     path:"admin",
     loadChildren:()=>import('../app/component/admin/admin.module').then(admin=>admin.AdminModule)
+  },
+  {
+    path:"dashboard",
+    loadChildren:()=>import('../app/component/dashboard/dashboard.module').then(dashboard=>dashboard.DashboardModule)
   }
 ];
