@@ -1,6 +1,6 @@
 <h6>Banner offer</h6>
 <p>Upload Banner</p>
-<input type="file" (change)="onFileSelected($event)" />
+<input #fileInput type="file" (change)="onFileSelected($event)" />
 
 <form [formGroup]="bannerForm" (ngSubmit)="onSubmitBannerForm()" *ngIf="bannerForm">
   <label>OfferName:

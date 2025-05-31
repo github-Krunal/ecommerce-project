@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Component,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { AdminApiService } from '../../../services-api/admin-api.service';
 import { IUploadImageResponse } from '../../../model/uploadImage.interface';
 import { IOfferBanner } from '../../../model/offerBanner.interface';
@@ -14,6 +14,8 @@ import { IOfferBanner } from '../../../model/offerBanner.interface';
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class SampleComponent {
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
   private selectedBannerFile: File | null = null;
   public bannerForm: FormGroup | undefined;
 
@@ -35,7 +37,6 @@ export class SampleComponent {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
       this.selectedBannerFile = fileInput.files[0];
-      this.uploadImage();
     }
   }
 
@@ -49,6 +50,7 @@ export class SampleComponent {
     this.adminApiService.postBannerOffer(offerBanner).subscribe((offerResponse: string) => {
       this.bannerForm?.reset();
       this.selectedBannerFile = null;
+      this.fileInput.nativeElement.value="";
     })
   }
 
