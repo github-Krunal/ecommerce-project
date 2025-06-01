@@ -48,10 +48,14 @@ export class SampleComponent {
 
   private postBannerOffer(offerBanner: IOfferBanner): void {
     this.adminApiService.postBannerOffer(offerBanner).subscribe((offerResponse: string) => {
-      this.bannerForm?.reset();
-      this.selectedBannerFile = null;
-      this.fileInput.nativeElement.value="";
+      this.resetBannerForm();
     })
+  }
+
+  private resetBannerForm(): void {
+    this.bannerForm?.reset();
+    this.selectedBannerFile = null;
+    this.fileInput.nativeElement.value = "";
   }
 
   private uploadImage(): Promise<boolean> {

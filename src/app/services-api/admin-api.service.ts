@@ -12,14 +12,15 @@ export class AdminApiService {
 
   constructor(private http: HttpClient) { }
 
-  public uploadImage(file:File|null): Observable<IUploadImageResponse>{
+  public uploadImage(file: File | null): Observable<IUploadImageResponse> {
     const formData = new FormData();
-    if(file){
-formData.append('file', file);
-}
+    if (file) {
+      formData.append('file', file);
+    }
     return this.http.post<IUploadImageResponse>(API_CONSTANT.IMAGE_UPLOAD, formData)
   }
-  public postBannerOffer(offerBanner:IOfferBanner): Observable<string>{
+
+  public postBannerOffer(offerBanner: IOfferBanner): Observable<string> {
     return this.http.post<string>(API_CONSTANT.BANNER_OFFER, offerBanner)
   }
 }
