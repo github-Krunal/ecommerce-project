@@ -4,11 +4,12 @@ import { Component,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRe
 import { AdminApiService } from '../../../services-api/admin-api.service';
 import { IUploadImageResponse } from '../../../model/uploadImage.interface';
 import { IOfferBanner } from '../../../model/offerBanner.interface';
+import { GloabalModule } from '../../../module/gloabal.module';
 
 @Component({
   selector: 'app-sample',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,GloabalModule],
   templateUrl: './sample.component.html',
   styleUrl: './sample.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
@@ -18,6 +19,17 @@ export class SampleComponent {
 
   private selectedBannerFile: File | null = null;
   public bannerForm: FormGroup | undefined;
+  protected adminList=[
+    {
+      DisplayName:"Banner offer",
+      InternalName:'banner'
+    },
+    {
+      DisplayName:"Categories",
+      InternalName:'category'
+    }
+  ]
+  protected selectedAdmin:any=this.adminList[1];
 
   constructor(private formBuilder: FormBuilder,private adminApiService:AdminApiService){}
 

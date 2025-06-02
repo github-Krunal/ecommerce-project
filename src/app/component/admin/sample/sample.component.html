@@ -1,15 +1,35 @@
-<h6>Banner offer</h6>
-<p>Upload Banner</p>
-<input #fileInput type="file" (change)="onFileSelected($event)" />
+<div class="container">
+<mat-form-field>
+  <mat-label>Select</mat-label>
+  <mat-select [(ngModel)]="selectedAdmin">
+    <ng-container *ngFor="let admin of adminList">
+      <mat-option value={{admin.InternalName}}>{{admin.DisplayName}}</mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
 
-<form [formGroup]="bannerForm" (ngSubmit)="onSubmitBannerForm()" *ngIf="bannerForm">
-  <label>OfferName:
-    <input formControlName="OfferName" />
-  </label>
-  <label>RouteURL:
-    <input formControlName="RouteURL" />
-  </label>
-  <button type="submit" [disabled]="bannerForm.invalid">Submit</button>
-</form>
+<!-- Banner offer -->
+<ng-container *ngIf="selectedAdmin.InternalName==='banner'">
+  <h6>Banner offer</h6>
+  <p>Upload Banner</p>
+  <input #fileInput type="file" (change)="onFileSelected($event)" />
+  <form [formGroup]="bannerForm" (ngSubmit)="onSubmitBannerForm()" *ngIf="bannerForm">
+    <label>OfferName:
+      <input formControlName="OfferName" />
+    </label>
+    <label>RouteURL:
+      <input formControlName="RouteURL" />
+    </label>
+    <button type="submit" [disabled]="bannerForm.invalid">Submit</button>
+  </form>
+</ng-container>
 
+<ng-container *ngIf="selectedAdmin.InternalName==='category'">
+  <h6>Categories</h6>
+
+</ng-container>
+
+
+
+</div>
 

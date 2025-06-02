@@ -1,19 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+const ANGULAR_MATERIAL_MODULE=[
+  MatSelectModule,
+  MatInputModule,
+  MatFormFieldModule
+]
 
 const MODULES=[
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  FormsModule
 ]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MODULES
+    MODULES,
+    ANGULAR_MATERIAL_MODULE
   ],
   exports:[
-    MODULES
+    MODULES,
+    ANGULAR_MATERIAL_MODULE
   ]
 })
 export class GloabalModule { }

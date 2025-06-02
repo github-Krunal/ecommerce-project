@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SampleComponent } from './sample/sample.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { GloabalModule } from '../../module/gloabal.module';
 
 
 const ADMIN_ROUTES:Routes=[
@@ -19,7 +19,8 @@ const ADMIN_ROUTES:Routes=[
     RouterModule.forChild(ADMIN_ROUTES),
     CommonModule,
     SampleComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GloabalModule
   ]
 })
 export class AdminModule { }
