@@ -9,14 +9,13 @@ import { GloabalModule } from '../../../module/gloabal.module';
 @Component({
   selector: 'app-sample',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,GloabalModule],
+  imports: [ReactiveFormsModule,CommonModule,GloabalModule,],
   templateUrl: './sample.component.html',
   styleUrl: './sample.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class SampleComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-
   private selectedBannerFile: File | null = null;
   public bannerForm: FormGroup | undefined;
 

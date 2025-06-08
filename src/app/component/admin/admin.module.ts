@@ -4,12 +4,13 @@ import { SampleComponent } from './sample/sample.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GloabalModule } from '../../module/gloabal.module';
+import { TestingComponent } from './testing/testing.component';
 
 
 const ADMIN_ROUTES:Routes=[
   {
     path:'',
-    component:SampleComponent
+    component:TestingComponent
   }
 ]
 
