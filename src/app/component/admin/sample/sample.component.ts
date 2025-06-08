@@ -19,17 +19,6 @@ export class SampleComponent {
 
   private selectedBannerFile: File | null = null;
   public bannerForm: FormGroup | undefined;
-  protected adminList=[
-    {
-      DisplayName:"Banner offer",
-      InternalName:'banner'
-    },
-    {
-      DisplayName:"Categories",
-      InternalName:'category'
-    }
-  ]
-  protected selectedAdmin:any=this.adminList[1];
 
   constructor(private formBuilder: FormBuilder,private adminApiService:AdminApiService){}
 

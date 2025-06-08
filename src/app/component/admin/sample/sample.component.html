@@ -1,15 +1,6 @@
 <div class="container">
-<mat-form-field>
-  <mat-label>Select</mat-label>
-  <mat-select [(ngModel)]="selectedAdmin">
-    <ng-container *ngFor="let admin of adminList">
-      <mat-option value={{admin.InternalName}}>{{admin.DisplayName}}</mat-option>
-    </ng-container>
-  </mat-select>
-</mat-form-field>
-
 <!-- Banner offer -->
-<ng-container *ngIf="selectedAdmin.InternalName==='banner'">
+<ng-container >
   <h6>Banner offer</h6>
   <p>Upload Banner</p>
   <input #fileInput type="file" (change)="onFileSelected($event)" />
@@ -24,9 +15,8 @@
   </form>
 </ng-container>
 
-<ng-container *ngIf="selectedAdmin.InternalName==='category'">
-  <h6>Categories</h6>
-
+<ng-container>
+  <h6 class="mt-5">Categories</h6>
 </ng-container>
 
 
