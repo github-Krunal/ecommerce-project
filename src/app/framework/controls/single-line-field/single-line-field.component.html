@@ -1,1 +1,5 @@
-<p>single-line-field works!</p>
+
+<form [formGroup]="frameworkForm" *ngIf="frameworkForm&&field">
+  <label for="fname">First Name</label>
+  <input type="text" [formControlName]="field.formControlName">
+</form>
