@@ -1,3 +1,5 @@
-<div class="container">
-  <single-line-field> </single-line-field>
-</div>
+<form [formGroup]="frameworkForm" (ngSubmit)="onSubmitFrameworkForm()" *ngIf="frameworkForm">
+  <div class="container">
+    <single-line-field> </single-line-field>
+  </div>
+</form>
