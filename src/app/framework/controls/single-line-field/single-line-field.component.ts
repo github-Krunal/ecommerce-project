@@ -15,7 +15,7 @@ import { FieldDefination } from '../../../model/fieldDefination.interface';
 export class SingleLineFieldComponent {
 
   @Input() field!:FieldDefination;
-  @Input() frameworkForm:FormGroup|undefined;
+  @Input() frameworkForm!:FormGroup;
 
   ngOnInit(): void {
     this.addControlInForm();

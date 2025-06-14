@@ -19,7 +19,12 @@ export class TestingComponent {
             formControlName:'OfferName',
             label:'OfferName',
             fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
-          }
+      },
+      {
+        formControlName:'second',
+        label:'second',
+        fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
+  }
     ]
   }
 }

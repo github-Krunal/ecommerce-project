@@ -38,7 +38,6 @@ export class FrameworkComponent {
   }
 
   public onSubmitFrameworkForm(){
-    debugger
-    console.log(this.frameworkForm);
+    console.log(this.frameworkForm?.value);
   }
 }
