@@ -1,5 +1,5 @@
 
 <div [formGroup]="frameworkForm" *ngIf="frameworkForm">
-  <label for="fname">First Name</label>
+  <label for="fname">{{field.label}}</label>
   <input type="text" [formControlName]="field.formControlName">
 </div>

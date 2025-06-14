@@ -1,6 +1,9 @@
 <form [formGroup]="frameworkForm" (ngSubmit)="onSubmitFrameworkForm()" *ngIf="frameworkForm">
   <ng-container *ngFor="let field of fieldDefination">
-    <single-line-field [field]="field" *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD" [frameworkForm]="frameworkForm"></single-line-field>
+    <!-- single line field-->
+    <single-line-field [field]="field" *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD"
+      [frameworkForm]="frameworkForm"></single-line-field>
+
   </ng-container>
   <button type="submit">Submit</button>
 </form>
