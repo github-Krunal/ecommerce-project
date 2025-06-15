@@ -1,9 +1,18 @@
+<div class="p-2">
 <form [formGroup]="frameworkForm" (ngSubmit)="onSubmitFrameworkForm()" *ngIf="frameworkForm">
+  <div class="d-flex justify-content-end">
+  <button mat-flat-button class="me-2" color="warn" (click)="closeFrameworkForm()">
+    <mat-icon>close</mat-icon> Close
+  </button>
+  <button mat-flat-button  type="submit">
+    <mat-icon>save</mat-icon> Save
+  </button>
+</div>
+
   <ng-container *ngFor="let field of fieldDefination">
     <!-- single line field-->
     <single-line-field [field]="field" *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD"
       [frameworkForm]="frameworkForm"></single-line-field>
-
   </ng-container>
-  <button type="submit">Submit</button>
 </form>
+</div>

@@ -1,6 +1,6 @@
 import { FieldDefination } from './../model/fieldDefination.interface';
 import { CommonModule } from '@angular/common';
-import { Component, Input,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, } from '@angular/core';
+import { Component, Input,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter, } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IBusinessObject } from '../model/businessObject.interface';
 import { ControlsModule } from './controls/controls.module';
@@ -16,6 +16,7 @@ import { FieldTypeEnum } from '../enum/fieldType.enum';
 export class FrameworkComponent {
 
   @Input() businessObject:IBusinessObject | undefined;
+  @Output() closeFormEmitter = new EventEmitter<boolean>(false);
   public frameworkForm: FormGroup | undefined;
   protected fieldDefination:FieldDefination[]=[];
   protected fieldTypeEnum = FieldTypeEnum;
@@ -39,5 +40,9 @@ export class FrameworkComponent {
 
   public onSubmitFrameworkForm(){
     console.log(this.frameworkForm?.value);
+    this.closeFrameworkForm();
+  }
+  public closeFrameworkForm(){
+    this.closeFormEmitter.emit(false)
   }
 }

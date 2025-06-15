@@ -14,6 +14,7 @@ import { GloabalModule } from '../../../module/gloabal.module';
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class TestingComponent {
+  public isOpenSideNav:boolean=false;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource:any =[
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -41,5 +42,12 @@ export class TestingComponent {
         fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
   }
     ]
+  }
+
+  openSidePanel(){
+    this.isOpenSideNav=true
+  }
+  closeSidePanel(){
+    this.isOpenSideNav=false;
   }
 }
