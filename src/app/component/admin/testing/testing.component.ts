@@ -1,14 +1,14 @@
 import { Component,CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA, } from '@angular/core';
 import { FieldTypeEnum } from '../../../enum/fieldType.enum';
 import { TableNameEnum } from '../../../enum/tableName.enum';
-import { FrameworkComponent } from '../../../framework/framework.component';
+// import { FrameworkComponent } from '../../../framework/framework.component';
 import { IBusinessObject } from '../../../model/businessObject.interface';
 import { GloabalModule } from '../../../module/gloabal.module';
 
 @Component({
   selector: 'app-testing',
   standalone: true,
-  imports: [FrameworkComponent,GloabalModule],
+  imports: [GloabalModule],
   templateUrl: './testing.component.html',
   styleUrl: './testing.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
@@ -28,21 +28,21 @@ export class TestingComponent {
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
-  public businessObject:IBusinessObject={
-    tableName:TableNameEnum.BannerField,
-    fieldDefination:[
-      {
-            formControlName:'OfferName',
-            label:'OfferName',
-            fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
-      },
-      {
-        formControlName:'second',
-        label:'second',
-        fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
-  }
-    ]
-  }
+  // public businessObject:IBusinessObject={
+  //   tableName:TableNameEnum.BannerField,
+  //   fieldDefination:[
+  //     {
+  //           formControlName:'OfferName',
+  //           label:'OfferName',
+  //           fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
+  //     },
+  //     {
+  //       formControlName:'second',
+  //       label:'second',
+  //       fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
+  // }
+  //   ]
+  // }
 
   openSidePanel(){
     this.isOpenSideNav=true

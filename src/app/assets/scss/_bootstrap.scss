@@ -1,0 +1,14 @@
+@import 'variables';
+
+input.form-control,
+select.form-control,
+textarea.form-control {
+  border-color: $form-control-color;
+}
+input.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+  box-shadow: none;
+  border-color: $form-control-color;
+  outline: none;
+}

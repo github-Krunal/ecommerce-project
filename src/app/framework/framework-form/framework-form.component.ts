@@ -1,22 +1,25 @@
-import { FieldDefination } from './../model/fieldDefination.interface';
 import { CommonModule } from '@angular/common';
-import { Component, Input,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter, } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IBusinessObject } from '../model/businessObject.interface';
-import { ControlsModule } from './controls/controls.module';
-import { FieldTypeEnum } from '../enum/fieldType.enum';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FieldTypeEnum } from '../../enum/fieldType.enum';
+import { IBusinessObject } from '../../model/businessObject.interface';
+import { FieldDefination } from '../../model/fieldDefination.interface';
+import { ControlsModule } from '../controls/controls.module';
+
 @Component({
-  selector: 'app-framework',
+  selector: 'framework-form',
   standalone: true,
   imports: [ControlsModule,ReactiveFormsModule,CommonModule],
-  templateUrl: './framework.component.html',
-  styleUrl: './framework.component.scss',
+  templateUrl: './framework-form.component.html',
+  styleUrl: './framework-form.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+
 })
-export class FrameworkComponent {
+export class FrameworkFormComponent {
 
   @Input() businessObject:IBusinessObject | undefined;
   @Output() closeFormEmitter = new EventEmitter<boolean>(false);
+  @Output() frameworkFormValueEmitter = new EventEmitter<any>();
   public frameworkForm: FormGroup | undefined;
   protected fieldDefination:FieldDefination[]=[];
   protected fieldTypeEnum = FieldTypeEnum;
@@ -38,11 +41,14 @@ export class FrameworkComponent {
     this.frameworkForm = this.formBuilder.group({});
   }
 
-  public onSubmitFrameworkForm(){
-    console.log(this.frameworkForm?.value);
+  public onSubmitFrameworkForm() {
+    let frameworkFormValue = this.frameworkForm?.value;
+    if (!this.businessObject?.isDynamicSave) {
+      this.frameworkFormValueEmitter.emit(frameworkFormValue)
+    }
     this.closeFrameworkForm();
   }
-  public closeFrameworkForm(){
+  public closeFrameworkForm() {
     this.closeFormEmitter.emit(false)
   }
 }
