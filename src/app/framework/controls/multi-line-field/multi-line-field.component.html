@@ -1,6 +1,6 @@
 <div [formGroup]="frameworkForm" *ngIf="frameworkForm">
   <div class="mb-3">
     <label [for]="field.formControlName" class="form-label" >{{field.label}}</label>
-    <input type="text" class="form-control" [id]="field.formControlName"[formControlName]="field.formControlName">
+    <textarea class="form-control" [id]="field.formControlName"[formControlName]="field.formControlName" rows="3"></textarea>
   </div>
 </div>

@@ -22,6 +22,11 @@ export class RepositoryListComponent {
             label:'Repository Name',
             fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
       },
+      {
+        formControlName:'description',
+        label:'Description',
+        fieldType:FieldTypeEnum.MULTI_LINE_FIELD
+      },
 
     ]
   }

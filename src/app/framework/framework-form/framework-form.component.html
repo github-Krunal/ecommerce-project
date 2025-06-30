@@ -13,6 +13,10 @@
       <!-- single line field-->
       <single-line-field [field]="field" *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD"
         [frameworkForm]="frameworkForm"></single-line-field>
+
+      <multi-line-field [field]="field" *ngIf="field?.fieldType === fieldTypeEnum.MULTI_LINE_FIELD"
+        [frameworkForm]="frameworkForm"></multi-line-field>
+
     </ng-container>
   </form>
   </div>
