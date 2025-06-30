@@ -63,8 +63,12 @@ export class RepositoryListComponent {
   }
   private saveRepositoryForm(repositoryDefination: any){
     this.frameworkService.saveRepositoyFrom(repositoryDefination).subscribe(repositoryResponse=>{
-      debugger
+
     })
+  }
+
+  private getAllRespositories(){
+
   }
 
   private getCurrentDate():string {

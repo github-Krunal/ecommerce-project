@@ -14,4 +14,7 @@ export class FrameworkService {
   public saveRepositoyFrom(repositoryDefination:any): Observable<any[]> {
     return this.http.post<any>(API_CONSTANT.REPOSITORY_SAVE,repositoryDefination)
   }
+  public getRepositoyList(): Observable<any[]> {
+    return this.http.get<any>(API_CONSTANT.REPOSITORY_LIST)
+  }
 }
