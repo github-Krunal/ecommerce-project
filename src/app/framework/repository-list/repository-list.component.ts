@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/co
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { IBusinessObject } from '../../model/businessObject.interface';
 import { GloabalModule } from '../../module/gloabal.module';
+import { FrameworkService } from '../../services-api/framework.service';
 import { FrameworkFormComponent } from '../framework-form/framework-form.component';
 
 @Component({
@@ -10,20 +11,21 @@ import { FrameworkFormComponent } from '../framework-form/framework-form.compone
   imports: [GloabalModule,FrameworkFormComponent],
   templateUrl: './repository-list.component.html',
   styleUrl: './repository-list.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+  providers:[FrameworkService]
 })
 export class RepositoryListComponent {
   protected isOpenSideNav:boolean=false;
   public businessObject:IBusinessObject={
-    isDynamicSave:true,
+    isDynamicSave:false,
     fieldDefination:[
       {
-            formControlName:'repositoryName',
+            formControlName:'RepositoryName',
             label:'Repository Name',
             fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
       },
       {
-        formControlName:'description',
+        formControlName:'Description',
         label:'Description',
         fieldType:FieldTypeEnum.MULTI_LINE_FIELD
       },
@@ -47,6 +49,8 @@ export class RepositoryListComponent {
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
 
+  constructor(private frameworkService:FrameworkService){}
+
   protected openSidePanel(){
     this.isOpenSideNav=true
   }
@@ -54,6 +58,24 @@ export class RepositoryListComponent {
     this.isOpenSideNav=false;
   }
   protected getframeweFormValue(event:any){
-    debugger
+    event['CreatedDate']=this.getCurrentDate();
+    this.saveRepositoryForm(event)
+  }
+  private saveRepositoryForm(repositoryDefination: any){
+    this.frameworkService.saveRepositoyFrom(repositoryDefination).subscribe(repositoryResponse=>{
+      debugger
+    })
+  }
+
+  private getCurrentDate():string {
+    const now = new Date();
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+
+    const formattedDate =
+      `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()} ` +
+      `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+    return formattedDate
   }
 }
