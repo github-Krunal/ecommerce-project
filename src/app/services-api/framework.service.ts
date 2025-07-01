@@ -17,4 +17,7 @@ export class FrameworkService {
   public getRepositoyList(): Observable<any[]> {
     return this.http.get<any>(API_CONSTANT.REPOSITORY_LIST)
   }
+  public deleteRepository(id:string): Observable<any[]> {
+    return this.http.delete<any>(API_CONSTANT.REPOSITORY_DELETE+`/${id}`)
+  }
 }
