@@ -1,1 +1,38 @@
-<p>framework-form-create works!</p>
+<div class="container">
+  <div class="mb-3">
+    <label class="form-label">Form Control Name</label>
+    <input type="text" class="form-control" [(ngModel)]="fieldName">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Form Field Type</label>
+    <select class="form-select" [(ngModel)]="fieldType" name="fieldType">
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button mat-flat-button class="me-2" color="warn" (click)="resetControls()">
+      <mat-icon>close</mat-icon> Clear
+    </button>
+    <button mat-flat-button class="me-2" type="submit" (click)="submitField()">
+      <mat-icon>save</mat-icon> Save
+    </button>
+    <button mat-flat-button type="submit" (click)="addField()">
+      <mat-icon>add</mat-icon> Add
+    </button>
+  </div>
+  <div class="mt-4">
+    Field Json Fields
+    <ng-container *ngIf="fieldDefinationList&&fieldDefinationList.length>0">
+      <mat-card appearance="outlined" *ngFor="let fieldDefination of fieldDefinationList; index as i">
+        <div class="d-flex justify-content-between mb-3">
+        <mat-card-content>{{fieldDefination|json}}</mat-card-content>
+        <button mat-fab aria-label="Example icon button with a delete icon" (click)="deleteJson(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
