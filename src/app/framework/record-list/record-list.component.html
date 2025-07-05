@@ -5,7 +5,7 @@
       <mat-icon>add</mat-icon> Actions
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/repository', repositoryID, 'edit']">
         <mat-icon>add</mat-icon>
         <span>Fields</span>
       </button>

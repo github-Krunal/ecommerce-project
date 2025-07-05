@@ -1,4 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ANGULARMATERIALModule } from '../../module/angular-material.module';
 import { GloabalModule } from '../../module/gloabal.module';
 import { FrameworkFormComponent } from '../framework-form/framework-form.component';
@@ -34,4 +35,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RecordListComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  public repositoryID:string|null=""
+
+  constructor(private route: ActivatedRoute){}
+
+  ngOnInit() {
+    this.repositoryID = this.route.snapshot.paramMap.get('id');
+  }
 }

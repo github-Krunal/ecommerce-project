@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RepositoryListComponent } from './repository-list/repository-list.component';
 import { RecordListComponent } from './record-list/record-list.component';
+import { FrameworkFormCreateComponent } from './framework-form-create/framework-form-create.component';
 
 const FRAMEWOEK_ROUTES: Routes = [
   {
@@ -12,6 +13,10 @@ const FRAMEWOEK_ROUTES: Routes = [
   {
     path: ":id/list",
     component: RecordListComponent
+  },
+  {
+    path: ":id/edit",
+    component: FrameworkFormCreateComponent
   }
 
 ]
