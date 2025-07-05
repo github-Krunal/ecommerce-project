@@ -5,5 +5,8 @@ export const API_CONSTANT = {
   IMAGE_UPLOAD: API_URL + 'uploadImage',
   REPOSITORY_SAVE: API_URL + 'repository',
   REPOSITORY_LIST: API_URL + 'repository-list',
-  REPOSITORY_DELETE: API_URL + 'delete-repository'
+  REPOSITORY_DELETE: API_URL + 'delete-repository',
+  FIELD_DEFINATION_UPDATE: API_URL + 'fieldDefination-update',
+  SINGLE_REPOSITORY: API_URL + 'repository-list',
+
 };
