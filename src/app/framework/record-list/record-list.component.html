@@ -9,6 +9,10 @@
         <mat-icon>add</mat-icon>
         <span>Fields</span>
       </button>
+      <button mat-menu-item (click)="addRecordForm()">
+        <mat-icon>add</mat-icon>
+        <span>Record</span>
+      </button>
     </mat-menu>
   </div>
 
@@ -49,3 +53,6 @@
 
 </div>
 
+<gb-right-panel [isOpenSideNav]="isOpenSideNav" *ngIf="isOpenSideNav">
+  <framework-form  (closeFormEmitter)="closeSidePanel()" [repositoryID]="repositoryID"></framework-form>
+</gb-right-panel>

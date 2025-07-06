@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { IBusinessObject } from '../../model/businessObject.interface';
 import { FieldDefination } from '../../model/fieldDefination.interface';
+import { FrameworkService } from '../../services-api/framework.service';
 import { ControlsModule } from '../controls/controls.module';
 
 @Component({
@@ -18,26 +19,38 @@ import { ControlsModule } from '../controls/controls.module';
 export class FrameworkFormComponent {
 
   @Input() businessObject:IBusinessObject | undefined;
+  @Input() repositoryID:string|null="";
   @Output() closeFormEmitter = new EventEmitter<boolean>(false);
   @Output() frameworkFormValueEmitter = new EventEmitter<any>();
   public frameworkForm: FormGroup | undefined;
   protected fieldDefination:FieldDefination[]=[];
   protected fieldTypeEnum = FieldTypeEnum;
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder,public frameworkService:FrameworkService){}
 
   ngOnInit(): void {
-    this.generateFrameworkForm();
+    this.generateForm();
+  }
+  private generateForm(){
+    if (this.repositoryID) {
+      this.getBusinessObject();
+    }
+    this.initializeFrameworkForm();
     this.getFieldDefination();
   }
-
+  private getBusinessObject() {
+    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
+      this.businessObject = objectDefination;
+      this.generateForm();
+    })
+  }
   private getFieldDefination(): void {
     if (this.businessObject?.fieldDefination) {
       this.fieldDefination = this.businessObject?.fieldDefination
     }
   }
 
-  private generateFrameworkForm(): void {
+  private initializeFrameworkForm(): void {
     this.frameworkForm = this.formBuilder.group({});
   }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_CONSTANT } from '../constant/api.constant';
+import { IBusinessObject } from '../model/businessObject.interface';
 import { FieldDefination } from '../model/fieldDefination.interface';
 import { IOfferBanner } from '../model/offerBanner.interface';
 
@@ -24,7 +25,7 @@ export class FrameworkService {
   public updateFieldDefination(repositoryID:string|null,fieldDefinationList:FieldDefination[]): Observable<string> {
     return this.http.post<string>(API_CONSTANT.FIELD_DEFINATION_UPDATE+`/${repositoryID}`,fieldDefinationList)
   }
-  public getSingleRepository(id:string|null): Observable<any[]> {
-    return this.http.get<any>(API_CONSTANT.SINGLE_REPOSITORY+`/${id}`)
+  public getSingleRepository(id:string|null): Observable<IBusinessObject> {
+    return this.http.get<IBusinessObject>(API_CONSTANT.SINGLE_REPOSITORY+`/${id}`)
   }
 }

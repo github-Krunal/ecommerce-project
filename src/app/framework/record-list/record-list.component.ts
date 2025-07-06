@@ -35,11 +35,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RecordListComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  public repositoryID:string|null=""
+  public repositoryID:string|null="";
+  public isOpenSideNav:boolean=false;
 
   constructor(private route: ActivatedRoute){}
 
   ngOnInit() {
     this.repositoryID = this.route.snapshot.paramMap.get('id');
+  }
+
+  public addRecordForm(){
+    this.isOpenSideNav=true;
+  }
+  public closeSidePanel(){
+    this.isOpenSideNav=false;
   }
 }
