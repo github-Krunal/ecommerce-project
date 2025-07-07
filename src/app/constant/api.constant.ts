@@ -8,5 +8,6 @@ export const API_CONSTANT = {
   REPOSITORY_DELETE: API_URL + 'delete-repository',
   FIELD_DEFINATION_UPDATE: API_URL + 'fieldDefination-update',
   SINGLE_REPOSITORY: API_URL + 'repository-list',
+  RECORD_SAVE: API_URL + 'record',
 
 };

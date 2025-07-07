@@ -28,4 +28,7 @@ export class FrameworkService {
   public getSingleRepository(id:string|null): Observable<IBusinessObject> {
     return this.http.get<IBusinessObject>(API_CONSTANT.SINGLE_REPOSITORY+`/${id}`)
   }
+  public saveRecordForm(record:any): Observable<any[]> {
+    return this.http.post<any>(API_CONSTANT.RECORD_SAVE,record)
+  }
 }

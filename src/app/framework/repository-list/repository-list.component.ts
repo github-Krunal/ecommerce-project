@@ -19,15 +19,15 @@ import { FrameworkTableComponent } from '../framework-table/framework-table.comp
 export class RepositoryListComponent implements OnInit {
   protected isOpenSideNav:boolean=false;
   public businessObject:IBusinessObject={
-    isDynamicSave:false,
+    isCustomFormSave:true,
     fieldDefination:[
       {
-            formControlName:'RepositoryName',
+            formControlName:'repositoryName',
             label:'Repository Name',
             fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
       },
       {
-        formControlName:'Description',
+        formControlName:'description',
         label:'Description',
         fieldType:FieldTypeEnum.MULTI_LINE_FIELD
       },
@@ -36,7 +36,7 @@ export class RepositoryListComponent implements OnInit {
   }
   public respositoryList:any[]=[];
 
-  displayedColumns: string[] = ['Action','RepositoryName', 'Description'];
+  displayedColumns: string[] = ['Action','repositoryName', 'description'];
   dataSource:any =[];
 
   constructor(private frameworkService:FrameworkService){}
@@ -52,7 +52,7 @@ export class RepositoryListComponent implements OnInit {
     this.isOpenSideNav=false;
   }
   protected getframeweFormValue(event:any){
-    event['CreatedDate']=this.getCurrentDate();
+    event['createdDate']=this.getCurrentDate();
     this.saveRepositoryForm(event)
   }
   private saveRepositoryForm(repositoryDefination: any){

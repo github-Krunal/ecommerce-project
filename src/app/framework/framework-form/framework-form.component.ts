@@ -35,13 +35,16 @@ export class FrameworkFormComponent {
     if (this.repositoryID) {
       this.getBusinessObject();
     }
+    this.formInitalization();
+  }
+  private formInitalization(){
     this.initializeFrameworkForm();
     this.getFieldDefination();
   }
   private getBusinessObject() {
     this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
       this.businessObject = objectDefination;
-      this.generateForm();
+      this.formInitalization();
     })
   }
   private getFieldDefination(): void {
@@ -56,11 +59,15 @@ export class FrameworkFormComponent {
 
   public onSubmitFrameworkForm() {
     let frameworkFormValue = this.frameworkForm?.value;
-    if (!this.businessObject?.isDynamicSave) {
+    if (this.businessObject?.isCustomFormSave) {
       this.frameworkFormValueEmitter.emit(frameworkFormValue)
     }
     this.closeFrameworkForm();
   }
+  private saveForm() {
+
+  }
+
   public closeFrameworkForm() {
     this.closeFormEmitter.emit(false)
   }

@@ -4,5 +4,5 @@ import { FieldDefination } from "./fieldDefination.interface";
 export interface IBusinessObject {
    tableName?:TableNameEnum,
    fieldDefination:FieldDefination[]
-   isDynamicSave:boolean
+   isCustomFormSave:boolean
 }
