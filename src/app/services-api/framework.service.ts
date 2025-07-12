@@ -5,6 +5,7 @@ import { API_CONSTANT } from '../constant/api.constant';
 import { IBusinessObject } from '../model/businessObject.interface';
 import { FieldDefination } from '../model/fieldDefination.interface';
 import { IOfferBanner } from '../model/offerBanner.interface';
+import { ISaveFrameworkObject } from '../model/saveFrameworkObject.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class FrameworkService {
   public getSingleRepository(id:string|null): Observable<IBusinessObject> {
     return this.http.get<IBusinessObject>(API_CONSTANT.SINGLE_REPOSITORY+`/${id}`)
   }
-  public saveRecordForm(record:any): Observable<any[]> {
-    return this.http.post<any>(API_CONSTANT.RECORD_SAVE,record)
+  public saveRecordForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
+    return this.http.post<any>(API_CONSTANT.RECORD_SAVE,saveFrameworkObject)
   }
 }

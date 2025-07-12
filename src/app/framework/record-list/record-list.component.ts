@@ -1,28 +1,20 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IBusinessObject } from '../../model/businessObject.interface';
+import { FieldDefination } from '../../model/fieldDefination.interface';
 import { ANGULARMATERIALModule } from '../../module/angular-material.module';
 import { GloabalModule } from '../../module/gloabal.module';
+import { FrameworkService } from '../../services-api/framework.service';
 import { FrameworkFormComponent } from '../framework-form/framework-form.component';
 import { FrameworkTableComponent } from '../framework-table/framework-table.component';
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  first: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {first: "1"},
+
 ];
 @Component({
   selector: 'record-list',
@@ -33,15 +25,32 @@ const ELEMENT_DATA: PeriodicElement[] = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
 })
 export class RecordListComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  @Input() businessObject:IBusinessObject | undefined;
+  displayedColumns: string[] = [];
   dataSource = ELEMENT_DATA;
   public repositoryID:string|null="";
   public isOpenSideNav:boolean=false;
 
-  constructor(private route: ActivatedRoute){}
+
+  constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
   ngOnInit() {
     this.repositoryID = this.route.snapshot.paramMap.get('id');
+    this.getBusinessObject()
+  }
+
+  private getBusinessObject() {
+    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
+      this.businessObject = objectDefination;
+    })
+    this.setDisplayColumns();
+  }
+
+  private setDisplayColumns(){
+    let fieldDefination:FieldDefination[]|undefined=this.businessObject?.fieldDefination;
+    if(fieldDefination&&fieldDefination.length>0){
+      this.displayedColumns=fieldDefination.map(field=>field.formControlName)
+    }
   }
 
   public addRecordForm(){

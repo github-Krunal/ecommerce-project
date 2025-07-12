@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { IBusinessObject } from '../../model/businessObject.interface';
 import { FieldDefination } from '../../model/fieldDefination.interface';
+import { ISaveFrameworkObject } from '../../model/saveFrameworkObject.interface';
 import { FrameworkService } from '../../services-api/framework.service';
 import { ControlsModule } from '../controls/controls.module';
 
@@ -32,20 +33,11 @@ export class FrameworkFormComponent {
     this.generateForm();
   }
   private generateForm(){
-    if (this.repositoryID) {
-      this.getBusinessObject();
-    }
     this.formInitalization();
   }
   private formInitalization(){
     this.initializeFrameworkForm();
     this.getFieldDefination();
-  }
-  private getBusinessObject() {
-    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
-      this.businessObject = objectDefination;
-      this.formInitalization();
-    })
   }
   private getFieldDefination(): void {
     if (this.businessObject?.fieldDefination) {
@@ -62,10 +54,17 @@ export class FrameworkFormComponent {
     if (this.businessObject?.isCustomFormSave) {
       this.frameworkFormValueEmitter.emit(frameworkFormValue)
     }
+    this.saveForm();
     this.closeFrameworkForm();
   }
   private saveForm() {
+    let saveFrameworkObject:ISaveFrameworkObject={
+      repositoryID:this.repositoryID,
+      record:this.frameworkForm?.value,
+    };
+    this.frameworkService.saveRecordForm(saveFrameworkObject).subscribe(record=>{
 
+    })
   }
 
   public closeFrameworkForm() {
