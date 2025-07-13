@@ -32,4 +32,7 @@ export class FrameworkService {
   public saveRecordForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
     return this.http.post<any>(API_CONSTANT.RECORD_SAVE,saveFrameworkObject)
   }
+  public getRecords(id:string|null): Observable<any> {
+    return this.http.get<any>(API_CONSTANT.RECORD_GET+`/${id}`)
+  }
 }

@@ -9,5 +9,6 @@ export const API_CONSTANT = {
   FIELD_DEFINATION_UPDATE: API_URL + 'fieldDefination-update',
   SINGLE_REPOSITORY: API_URL + 'repository-list',
   RECORD_SAVE: API_URL + 'saveRecord',
+  RECORD_GET: API_URL + 'record',
 
 };

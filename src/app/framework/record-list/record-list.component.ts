@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RecordListComponent {
   @Input() businessObject:IBusinessObject | undefined;
   displayedColumns: string[] = [];
-  dataSource = ELEMENT_DATA;
+  public dataSource:any[]=[];
   public repositoryID:string|null="";
   public isOpenSideNav:boolean=false;
 
@@ -51,6 +51,13 @@ export class RecordListComponent {
     if(fieldDefination&&fieldDefination.length>0){
       this.displayedColumns=fieldDefination.map(field=>field.formControlName)
     }
+    this.getRecords();
+  }
+
+  private getRecords(){
+    this.frameworkService.getRecords(this.repositoryID).subscribe((records: any) => {
+      this.dataSource=records
+    })
   }
 
   public addRecordForm(){
