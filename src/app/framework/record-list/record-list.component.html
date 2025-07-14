@@ -16,7 +16,7 @@
     </mat-menu>
   </div>
 
-  <ng-container *ngIf="displayedColumns&&displayedColumns.length>0">
+  <ng-container *ngIf="dataSource&&dataSource.length>0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container *ngFor="let column of displayedColumns">
         <ng-container matColumnDef="{{column}}">

@@ -7,6 +7,10 @@ export const routes: Routes = [
     redirectTo:'dashboard'
   },
   {
+    path:"auth",
+    loadChildren:()=>import('../app/component/authentication/authentication.module').then(auth=>auth.AuthenticationModule)
+  },
+  {
     path:"admin",
     loadChildren:()=>import('../app/component/admin/admin.module').then(admin=>admin.AdminModule)
   },
