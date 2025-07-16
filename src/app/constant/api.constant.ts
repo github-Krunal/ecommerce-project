@@ -10,5 +10,6 @@ export const API_CONSTANT = {
   SINGLE_REPOSITORY: API_URL + 'repository-list',
   RECORD_SAVE: API_URL + 'saveRecord',
   RECORD_GET: API_URL + 'record',
+  REGISTRATION_POST: API_URL + 'registration',
 
 };
