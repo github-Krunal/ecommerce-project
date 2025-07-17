@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ANGULARMATERIALModule } from './angular-material.module';
 import { RouterModule } from '@angular/router';
 import { RightPanelComponent } from '../global-component/right-panel/right-panel.component';
+import { SnackbarComponent } from '../global-component/snackbar/snackbar.component';
 
 
 
@@ -15,7 +16,8 @@ const MODULES=[
 ]
 
 const COMPONENT=[
-  RightPanelComponent
+  RightPanelComponent,
+  SnackbarComponent
 ]
 @NgModule({
   declarations: [],
