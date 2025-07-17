@@ -3,3 +3,8 @@ export interface IRegistration {
   username: string
   password: string
 }
+
+export interface IRegistrationResponse {
+  id?: string
+  message?: string
+}
