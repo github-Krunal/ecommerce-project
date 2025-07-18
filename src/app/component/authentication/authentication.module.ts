@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { UtilityService } from '../../global-service/utility.service';
 
 const AUTHENTICATION_ROUTES: Routes = [
   {
@@ -25,6 +26,7 @@ const AUTHENTICATION_ROUTES: Routes = [
   imports: [
     RouterModule.forChild(AUTHENTICATION_ROUTES),
     CommonModule
-  ]
+  ],
+  providers:[UtilityService]
 })
 export class AuthenticationModule { }
