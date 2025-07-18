@@ -11,5 +11,6 @@ export const API_CONSTANT = {
   RECORD_SAVE: API_URL + 'saveRecord',
   RECORD_GET: API_URL + 'record',
   REGISTRATION_POST: API_URL + 'registration',
+  LOGIN_POST: API_URL + 'login',
 
 };
