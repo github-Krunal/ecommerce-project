@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UtilityService } from '../../../global-service/utility.service';
 import { ILogin, ILoginResponse } from '../../../model/login.interface';
 import { GloabalModule } from '../../../module/gloabal.module';
@@ -19,7 +19,7 @@ import { AuthService } from '../../../services-api/auth.service';
 export class LoginComponent {
   public loginForm: FormGroup | undefined;
 
-  constructor(private formBuilder: FormBuilder,public authService:AuthService){}
+  constructor(private formBuilder: FormBuilder,public authService:AuthService,private utilityService:UtilityService,private router:Router){}
 
   ngOnInit(): void {
     this.formInitialization();
@@ -36,6 +36,8 @@ export class LoginComponent {
     let login:ILogin=this.loginForm?.value;
     this.authService.postLogin(login).subscribe((loginResponse:ILoginResponse)=>{
       if(loginResponse.id){
+        this.utilityService.showSnackbar('login successful');
+        this.router.navigateByUrl('')
         this.resetForm();
       }
     })
