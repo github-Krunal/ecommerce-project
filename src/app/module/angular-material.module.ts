@@ -12,6 +12,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const ANGULAR_MATERIAL_MODULE=[
   MatSelectModule,
@@ -24,7 +25,8 @@ const ANGULAR_MATERIAL_MODULE=[
   MatSidenavModule,
   MatMenuModule,
   MatCardModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatToolbarModule
 ]
 
 @NgModule({
