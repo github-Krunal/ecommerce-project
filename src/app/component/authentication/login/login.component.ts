@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { LOCAL_STOREAGE_CONSTANT } from '../../../constant/localstorge.constant';
 import { UtilityService } from '../../../global-service/utility.service';
 import { ILogin, ILoginResponse } from '../../../model/login.interface';
 import { GloabalModule } from '../../../module/gloabal.module';
@@ -35,8 +36,9 @@ export class LoginComponent {
   protected onSubmitloginForm(){
     let login:ILogin=this.loginForm?.value;
     this.authService.postLogin(login).subscribe((loginResponse:ILoginResponse)=>{
-      if(loginResponse.id){
-        this.utilityService.showSnackbar('login successful');
+      if(loginResponse.user?._id){
+        this.utilityService.setInLocalStorage(LOCAL_STOREAGE_CONSTANT.USER,loginResponse.user)
+        this.utilityService.showSnackbar(loginResponse?.message);
         this.router.navigateByUrl('')
         this.resetForm();
       }

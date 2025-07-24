@@ -4,6 +4,13 @@ export interface ILogin {
 }
 
 export interface ILoginResponse {
-  id?: string
+  user?: IUser
   message?: string
+}
+
+export interface IUser {
+  email?: string;
+  password?: string;
+  username?: string;
+  _id?: string;
 }
