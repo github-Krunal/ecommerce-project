@@ -2,7 +2,7 @@
   <img src="https://static.vecteezy.com/system/resources/previews/021/674/236/original/fbs-letter-logo-design-in-illustration-logo-calligraphy-designs-for-logo-poster-invitation-etc-vector.jpg" alt="Logo" width="80" height="80">
   <span>Code Innovator</span>
   <span class="example-spacer"></span>
-  <div class="avatar-circle">
+  <div class="avatar-circle" [matMenuTriggerFor]="menu">
     <!-- <img
       src="https://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg?w=2000"
       alt="avatar"
@@ -10,4 +10,14 @@
     /> -->
     <span>{{userInitial}}</span>
   </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>logout</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

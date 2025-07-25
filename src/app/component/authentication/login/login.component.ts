@@ -38,10 +38,10 @@ export class LoginComponent {
     this.authService.postLogin(login).subscribe((loginResponse:ILoginResponse)=>{
       if(loginResponse.user?._id){
         this.utilityService.setInLocalStorage(LOCAL_STOREAGE_CONSTANT.USER,loginResponse.user)
-        this.utilityService.showSnackbar(loginResponse?.message);
-        this.router.navigateByUrl('')
-        this.resetForm();
+        this.router.navigateByUrl('');
       }
+      this.utilityService.showSnackbar(loginResponse?.message);
+      this.resetForm();
     })
   }
 

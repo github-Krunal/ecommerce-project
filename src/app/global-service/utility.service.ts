@@ -25,6 +25,10 @@ export class UtilityService {
     return item ? JSON.parse(item) : null;
   }
 
+  public removeFromLocalStorage(key: string) {
+    localStorage.removeItem(key);
+  }
+
   public getInitials(): string {
     const user = this.getInLocalStorage(LOCAL_STOREAGE_CONSTANT.USER) as IUser | null;
     const source = user?.username?.trim() || user?.email?.trim();
