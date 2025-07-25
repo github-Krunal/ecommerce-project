@@ -29,8 +29,12 @@ export class UtilityService {
     localStorage.removeItem(key);
   }
 
+  private getUser():IUser |null{
+    return  this.getInLocalStorage(LOCAL_STOREAGE_CONSTANT.USER) as IUser | null;
+  }
+
   public getInitials(): string {
-    const user = this.getInLocalStorage(LOCAL_STOREAGE_CONSTANT.USER) as IUser | null;
+    const user = this.getUser();
     const source = user?.username?.trim() || user?.email?.trim();
 
     if (!source) return '';
@@ -43,5 +47,19 @@ export class UtilityService {
     return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase(); // e.g., "admin user" → "AU"
   }
 
+  public getCurrentUserID():string {
+    return this.getUser()?._id ?? '';
+  }
 
+  public getCurrentDate():string {
+    const now = new Date();
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+
+    const formattedDate =
+      `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()} ` +
+      `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+    return formattedDate
+  }
 }
