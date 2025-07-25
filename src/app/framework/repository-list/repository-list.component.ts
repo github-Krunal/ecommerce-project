@@ -1,3 +1,4 @@
+import { UtilityService } from './../../global-service/utility.service';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { IBusinessObject } from '../../model/businessObject.interface';
@@ -6,6 +7,7 @@ import { GloabalModule } from '../../module/gloabal.module';
 import { FrameworkService } from '../../services-api/framework.service';
 import { FrameworkFormComponent } from '../framework-form/framework-form.component';
 import { FrameworkTableComponent } from '../framework-table/framework-table.component';
+import { IRepositoryDefination } from '../../model/repositoryDefination.interface';
 
 @Component({
   selector: 'app-repository-list',
@@ -14,7 +16,7 @@ import { FrameworkTableComponent } from '../framework-table/framework-table.comp
   templateUrl: './repository-list.component.html',
   styleUrl: './repository-list.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
-  providers:[FrameworkService]
+  providers:[FrameworkService,UtilityService]
 })
 export class RepositoryListComponent implements OnInit {
   protected isOpenSideNav:boolean=false;
@@ -39,7 +41,7 @@ export class RepositoryListComponent implements OnInit {
   displayedColumns: string[] = ['Action','repositoryName', 'description'];
   dataSource:any =[];
 
-  constructor(private frameworkService:FrameworkService){}
+  constructor(private frameworkService:FrameworkService,private utilityService:UtilityService){}
 
   ngOnInit(): void {
     this.getAllRespositories();
@@ -51,9 +53,10 @@ export class RepositoryListComponent implements OnInit {
   protected closeSidePanel(){
     this.isOpenSideNav=false;
   }
-  protected getframeweFormValue(event:any){
-    event['createdDate']=this.getCurrentDate();
-    this.saveRepositoryForm(event)
+  protected getframeweFormValue(repositoryFrom:IRepositoryDefination){
+    repositoryFrom.createdDate=this.utilityService.getCurrentDate();
+    repositoryFrom.createdBy=this.utilityService.getCurrentUserID();
+    this.saveRepositoryForm(repositoryFrom)
   }
   private saveRepositoryForm(repositoryDefination: any){
     this.frameworkService.saveRepositoyFrom(repositoryDefination).subscribe(repositoryResponse=>{
@@ -73,15 +76,4 @@ export class RepositoryListComponent implements OnInit {
     })
   }
 
-  private getCurrentDate():string {
-    const now = new Date();
-
-    const pad = (n: number) => n.toString().padStart(2, '0');
-
-    const formattedDate =
-      `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()} ` +
-      `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-
-    return formattedDate
-  }
 }
