@@ -20,4 +20,7 @@ export class FormRenderControlComponent {
   @Input() isFieldDefinationCreate:boolean=false
   protected fieldTypeEnum = FieldTypeEnum;
 
+  protected deleteField(index:number){
+     this.fieldDefination.splice(index, 1);
+  }
 }

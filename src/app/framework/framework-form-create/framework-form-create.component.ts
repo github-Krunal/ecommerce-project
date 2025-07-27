@@ -9,6 +9,7 @@ import { FrameworkService } from '../../services-api/framework.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormRenderControlComponent } from '../form-render-control/form-render-control.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { IBusinessObject } from '../../model/businessObject.interface';
 
 @Component({
   selector: 'framework-form-create',
@@ -23,18 +24,7 @@ export class FrameworkFormCreateComponent {
 
   public fieldName:string="";
   public fieldType!:FieldTypeEnum|null;
-  public fieldDefinationList:FieldDefination[]=[
-  //   {
-  //   fieldType:FieldTypeEnum.SINGLE_LINE_FIELD,
-  //   formControlName:'abc',
-  //   label:"kk"
-  // },
-  // {
-  //   fieldType:FieldTypeEnum.MULTI_LINE_FIELD,
-  //   formControlName:'abc',
-  //   label:"kk"
-  // }
-]
+  public fieldDefinationList:FieldDefination[]=[]
   public fieldTypList: FieldTypeEnum[] = Object.values(FieldTypeEnum);
   public repositoryID:string|null="";
 
@@ -54,9 +44,18 @@ export class FrameworkFormCreateComponent {
   ngOnInit() {
     this.repositoryID = this.route.snapshot.paramMap.get('id');
     this.initializeFrameworkForm();
+    this.getBusinessObject()
   }
   private initializeFrameworkForm(): void {
     this.frameworkForm = this.formBuilder.group({});
+  }
+
+  private getBusinessObject() {
+    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
+      if(Array.isArray(objectDefination.fieldDefination)&&objectDefination.fieldDefination.length>0){
+        this.fieldDefinationList = objectDefination.fieldDefination;
+      }
+    })
   }
 
   drop(event: CdkDragDrop<any[]>) {
@@ -85,31 +84,9 @@ export class FrameworkFormCreateComponent {
         return FieldTypeEnum.SINGLE_LINE_FIELD;
     }
   }
-  // public addField(){
-  //   this.fieldDefinationList.push(
-  //     {
-  //       fieldType:this.fieldType,
-  //       formControlName:this.removeSpaceFromControl(),
-  //       label:this.fieldName
-  //     }
-  //   )
-  //   this.resetControls();
-  // }
   public submitField(){
     this.frameworkService.updateFieldDefination(this.repositoryID,this.fieldDefinationList).subscribe(response=>{
-      this.fieldDefinationList=[]
     })
   }
 
-  // protected resetControls():void{
-  //   this.fieldName="";
-  //   this.fieldType = null;
-  // }
-
-  // public removeSpaceFromControl():string{
-  //   return this.fieldName.replace(/\s+/g, '');
-  // }
-  // public deleteJson(index:number){
-  //   this.fieldDefinationList.splice(index, 1);
-  // }
 }
