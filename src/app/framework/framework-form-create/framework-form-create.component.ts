@@ -28,7 +28,7 @@ export class FrameworkFormCreateComponent {
   public fieldDefinationList:FieldDefination[]=[]
   public fieldTypList: FieldTypeEnum[] = Object.values(FieldTypeEnum);
   public repositoryID:string|null="";
-
+  public selectedFieldDefination:FieldDefination|undefined;
   public fieldList:any[]=[
     {
       icon:"add",
@@ -88,6 +88,10 @@ export class FrameworkFormCreateComponent {
   public submitField(){
     this.frameworkService.updateFieldDefination(this.repositoryID,this.fieldDefinationList).subscribe(response=>{
     })
+  }
+
+  protected fieldEmitter(field:FieldDefination){
+    this.selectedFieldDefination=field;
   }
 
 }

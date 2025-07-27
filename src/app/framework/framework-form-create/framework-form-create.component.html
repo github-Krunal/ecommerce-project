@@ -48,7 +48,7 @@
       <ng-container *ngIf="fieldDefinationList?.length > 0; else noFields">
         <form-render-control
           [frameworkForm]="frameworkForm"
-          [fieldDefination]="fieldDefinationList" [isFieldDefinationCreate]="true">
+          [fieldDefination]="fieldDefinationList" [isFieldDefinationCreate]="true" (fieldEmitter)="fieldEmitter($event)">
         </form-render-control>
       </ng-container>
 
@@ -61,7 +61,7 @@
 
   <!-- Right: Placeholder -->
   <div class="col-md-2">
-      <form-business-object></form-business-object>
+      <form-business-object [field]="selectedFieldDefination"></form-business-object>
   </div>
 
 </div>

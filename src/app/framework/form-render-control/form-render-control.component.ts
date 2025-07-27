@@ -1,6 +1,6 @@
 
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { FieldDefination } from '../../model/fieldDefination.interface';
@@ -17,10 +17,15 @@ import { ControlsModule } from '../controls/controls.module';
 export class FormRenderControlComponent {
   @Input() fieldDefination:FieldDefination[]=[];
   @Input() frameworkForm: FormGroup | undefined;
-  @Input() isFieldDefinationCreate:boolean=false
+  @Input() isFieldDefinationCreate:boolean=false;
+  @Output() fieldEmitter = new EventEmitter<FieldDefination>();
   protected fieldTypeEnum = FieldTypeEnum;
 
   protected deleteField(index:number){
      this.fieldDefination.splice(index, 1);
+  }
+
+  protected selectedField(field:FieldDefination){
+    this.fieldEmitter.emit(field)
   }
 }

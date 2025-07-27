@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FieldDefination } from './../../model/fieldDefination.interface';
+import { Component, Output, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'form-business-object',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './form-business-object.component.html',
-  styleUrl: './form-business-object.component.scss'
+  styleUrl: './form-business-object.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+
 })
 export class FormBusinessObjectComponent {
-
+  @Output() field!: FieldDefination
 }

@@ -2,20 +2,24 @@
   <ng-container *ngFor="let field of fieldDefination; let index = index">
 
     <!-- Single Line Field -->
-    <div *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD" [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag [cdkDragDisabled]="!isFieldDefinationCreate">
-      <div class="field-action-icon" *ngIf="isFieldDefinationCreate"><mat-icon (click)="deleteField(index)">close</mat-icon></div>
-      <single-line-field
-        [field]="field"
-        [frameworkForm]="frameworkForm">
+    <div *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD"
+      [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+      [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+      <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+        <mat-icon (click)="deleteField(index)">close</mat-icon>
+      </div>
+      <single-line-field [field]="field" [frameworkForm]="frameworkForm">
       </single-line-field>
     </div>
 
     <!-- Multi Line Field -->
-    <div *ngIf="field?.fieldType === fieldTypeEnum.MULTI_LINE_FIELD" [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag [cdkDragDisabled]="!isFieldDefinationCreate">
-      <div class="field-action-icon" *ngIf="isFieldDefinationCreate"><mat-icon (click)="deleteField(index)">close</mat-icon></div>
-      <multi-line-field
-        [field]="field"
-        [frameworkForm]="frameworkForm">
+    <div *ngIf="field?.fieldType === fieldTypeEnum.MULTI_LINE_FIELD"
+      [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+      [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+      <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+        <mat-icon (click)="deleteField(index)">close</mat-icon>
+      </div>
+      <multi-line-field [field]="field" [frameworkForm]="frameworkForm">
       </multi-line-field>
     </div>
 
