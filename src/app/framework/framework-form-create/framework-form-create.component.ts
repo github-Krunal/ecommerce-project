@@ -10,11 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FormRenderControlComponent } from '../form-render-control/form-render-control.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { IBusinessObject } from '../../model/businessObject.interface';
+import { FormBusinessObjectComponent } from '../form-business-object/form-business-object.component';
 
 @Component({
   selector: 'framework-form-create',
   standalone: true,
-  imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent,CommonModule],
+  imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent,CommonModule,FormBusinessObjectComponent],
   templateUrl: './framework-form-create.component.html',
   styleUrl: './framework-form-create.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
