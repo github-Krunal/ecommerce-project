@@ -17,6 +17,7 @@ import { ControlsModule } from '../controls/controls.module';
 export class FormRenderControlComponent {
   @Input() fieldDefination:FieldDefination[]=[];
   @Input() frameworkForm: FormGroup | undefined;
+  @Input() isFieldDefinationCreate:boolean=false
   protected fieldTypeEnum = FieldTypeEnum;
 
 }

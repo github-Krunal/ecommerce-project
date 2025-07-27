@@ -2,7 +2,7 @@
   <ng-container *ngFor="let field of fieldDefination">
 
     <!-- Single Line Field -->
-    <div *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD" class="card p-3 ps-4 pe-4 mb-3">
+    <div *ngIf="field?.fieldType === fieldTypeEnum.SINGLE_LINE_FIELD" [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''">
       <single-line-field
         [field]="field"
         [frameworkForm]="frameworkForm">
@@ -10,7 +10,7 @@
     </div>
 
     <!-- Multi Line Field -->
-    <div *ngIf="field?.fieldType === fieldTypeEnum.MULTI_LINE_FIELD" class="card p-3 ps-4 pe-4 mb-3">
+    <div *ngIf="field?.fieldType === fieldTypeEnum.MULTI_LINE_FIELD" [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''">
       <multi-line-field
         [field]="field"
         [frameworkForm]="frameworkForm">

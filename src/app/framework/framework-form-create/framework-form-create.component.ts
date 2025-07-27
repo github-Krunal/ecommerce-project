@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -12,7 +13,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 @Component({
   selector: 'framework-form-create',
   standalone: true,
-  imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent],
+  imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent,CommonModule],
   templateUrl: './framework-form-create.component.html',
   styleUrl: './framework-form-create.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
@@ -37,10 +38,14 @@ export class FrameworkFormCreateComponent {
   public fieldTypList: FieldTypeEnum[] = Object.values(FieldTypeEnum);
   public repositoryID:string|null="";
 
-  public fieldList:any=[
+  public fieldList:any[]=[
     {
       icon:"add",
       Name:"Text Field"
+    },
+    {
+      icon:"add",
+      Name:"Multi-line Field"
     }
   ]
 
@@ -54,17 +59,30 @@ export class FrameworkFormCreateComponent {
     this.frameworkForm = this.formBuilder.group({});
   }
 
-  drop(event: CdkDragDrop<FieldDefination[]>) {
-    debugger
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      const draggedItem = event.previousContainer.data[event.previousIndex];
+      // Map the dragged item to a FieldDefination
+      const newField: FieldDefination = {
+        fieldType: this.mapNameToFieldType(draggedItem.Name),
+        formControlName: `field_${Date.now()}`,
+        label: draggedItem.Name+`name_${this.fieldDefinationList.length}`
+      };
+
+      event.container.data.splice(event.currentIndex, 0, newField);
+    }
+  }
+
+  private mapNameToFieldType(name: string): FieldTypeEnum {
+    switch (name) {
+      case 'Text Field':
+        return FieldTypeEnum.SINGLE_LINE_FIELD;
+      case 'Multi-line Field':
+        return FieldTypeEnum.MULTI_LINE_FIELD;
+      default:
+        return FieldTypeEnum.SINGLE_LINE_FIELD;
     }
   }
   // public addField(){
@@ -77,11 +95,11 @@ export class FrameworkFormCreateComponent {
   //   )
   //   this.resetControls();
   // }
-  // public submitField(){
-  //   this.frameworkService.updateFieldDefination(this.repositoryID,this.fieldDefinationList).subscribe(response=>{
-  //     this.fieldDefinationList=[]
-  //   })
-  // }
+  public submitField(){
+    this.frameworkService.updateFieldDefination(this.repositoryID,this.fieldDefinationList).subscribe(response=>{
+      this.fieldDefinationList=[]
+    })
+  }
 
   // protected resetControls():void{
   //   this.fieldName="";
