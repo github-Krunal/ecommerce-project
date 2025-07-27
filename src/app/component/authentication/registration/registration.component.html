@@ -14,13 +14,15 @@
 		</div>
 	</div>
   <div class="form-container sign-in-container">
-		<form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" *ngIf="registrationForm">
+		@if (registrationForm) {
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()">
 			<h1>Sign up</h1>
 			<input type="email" placeholder="Email" formControlName="email">
 			<input type="text" placeholder="Username" formControlName="username"/>
 			<input type="password" placeholder="Password" formControlName="password"/>
 			<button class="mt-4" type="submit">Sign up</button>
 		</form>
+}
 	</div>
 </div>
 

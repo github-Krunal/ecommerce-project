@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { SERVER_URL } from '../../../constant/api.constant';
 import { IOfferBanner } from '../../../model/offerBanner.interface';
@@ -7,7 +7,7 @@ import { DashboardService } from '../../../services-api/dashboard.service';
 @Component({
   selector: 'app-banneroffer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './banneroffer.component.html',
   styleUrl: './banneroffer.component.scss'
 })

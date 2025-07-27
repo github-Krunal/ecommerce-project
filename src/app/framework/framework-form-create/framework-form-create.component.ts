@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
 import { FieldDefination } from '../../model/fieldDefination.interface';
@@ -7,11 +7,12 @@ import { ANGULARMATERIALModule } from '../../module/angular-material.module';
 import { FrameworkService } from '../../services-api/framework.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormRenderControlComponent } from '../form-render-control/form-render-control.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'framework-form-create',
   standalone: true,
-  imports: [ANGULARMATERIALModule,CommonModule,FormsModule,FormRenderControlComponent],
+  imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent],
   templateUrl: './framework-form-create.component.html',
   styleUrl: './framework-form-create.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
@@ -21,15 +22,22 @@ export class FrameworkFormCreateComponent {
 
   public fieldName:string="";
   public fieldType!:FieldTypeEnum|null;
-  public fieldDefinationList:FieldDefination[]=[{
-    fieldType:FieldTypeEnum.SINGLE_LINE_FIELD,
-    formControlName:'abc',
-    label:"kk"
-  }]
+  public fieldDefinationList:FieldDefination[]=[
+  //   {
+  //   fieldType:FieldTypeEnum.SINGLE_LINE_FIELD,
+  //   formControlName:'abc',
+  //   label:"kk"
+  // },
+  // {
+  //   fieldType:FieldTypeEnum.MULTI_LINE_FIELD,
+  //   formControlName:'abc',
+  //   label:"kk"
+  // }
+]
   public fieldTypList: FieldTypeEnum[] = Object.values(FieldTypeEnum);
   public repositoryID:string|null="";
 
-  public fieldList=[
+  public fieldList:any=[
     {
       icon:"add",
       Name:"Text Field"
@@ -46,6 +54,19 @@ export class FrameworkFormCreateComponent {
     this.frameworkForm = this.formBuilder.group({});
   }
 
+  drop(event: CdkDragDrop<FieldDefination[]>) {
+    debugger
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
   // public addField(){
   //   this.fieldDefinationList.push(
   //     {

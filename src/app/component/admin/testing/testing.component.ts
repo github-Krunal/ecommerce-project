@@ -4,50 +4,37 @@ import { TableNameEnum } from '../../../enum/tableName.enum';
 // import { FrameworkComponent } from '../../../framework/framework.component';
 import { IBusinessObject } from '../../../model/businessObject.interface';
 import { GloabalModule } from '../../../module/gloabal.module';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-testing',
   standalone: true,
-  imports: [GloabalModule],
+  imports: [GloabalModule,CdkDropList, CdkDrag],
   templateUrl: './testing.component.html',
   styleUrl: './testing.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class TestingComponent {
-  public isOpenSideNav:boolean=false;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource:any =[
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  ];
-  // public businessObject:IBusinessObject={
-  //   tableName:TableNameEnum.BannerField,
-  //   fieldDefination:[
-  //     {
-  //           formControlName:'OfferName',
-  //           label:'OfferName',
-  //           fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
-  //     },
-  //     {
-  //       formControlName:'second',
-  //       label:'second',
-  //       fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
-  // }
-  //   ]
-  // }
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
-  openSidePanel(){
-    this.isOpenSideNav=true
-  }
-  closeSidePanel(){
-    this.isOpenSideNav=false;
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

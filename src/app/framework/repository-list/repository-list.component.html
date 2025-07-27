@@ -39,6 +39,8 @@
   </table>
 
 </div>
-<gb-right-panel [isOpenSideNav]="isOpenSideNav" *ngIf="isOpenSideNav">
+@if (isOpenSideNav) {
+<gb-right-panel [isOpenSideNav]="isOpenSideNav">
   <framework-form [businessObject]="businessObject" (closeFormEmitter)="closeSidePanel()" (frameworkFormValueEmitter)="getframeweFormValue($event)"></framework-form>
 </gb-right-panel>
+}

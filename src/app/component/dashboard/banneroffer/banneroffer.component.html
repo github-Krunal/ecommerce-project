@@ -1,10 +1,13 @@
-<ng-container *ngIf="bannerOfferList && bannerOfferList.length > 0">
+@if (bannerOfferList && bannerOfferList.length > 0) {
+
   <div id="carouselExampleAutoplaying" class="carousel slide container mt-5" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let bannerOffer of bannerOfferList; let isFirst = first"
+      @for (bannerOffer of bannerOfferList; track bannerOffer; let isFirst = $first) {
+<div class="carousel-item"
         [class.active]="isFirst">
         <img src={{bannerOffer.ImageURL}} class="d-block w-100 carousel-image rounded" alt="...">
       </div>
+}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
       data-bs-slide="prev">
@@ -17,4 +20,5 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-</ng-container>
+
+}

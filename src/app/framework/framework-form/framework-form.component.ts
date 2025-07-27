@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
@@ -12,7 +12,7 @@ import { FormRenderControlComponent } from '../form-render-control/form-render-c
 @Component({
   selector: 'framework-form',
   standalone: true,
-  imports: [ControlsModule,ReactiveFormsModule,CommonModule,FormRenderControlComponent],
+  imports: [ControlsModule, ReactiveFormsModule, FormRenderControlComponent],
   templateUrl: './framework-form.component.html',
   styleUrl: './framework-form.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]

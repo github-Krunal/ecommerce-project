@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -9,7 +9,7 @@ import { AuthService } from '../../../services-api/auth.service';
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ControlsModule,ReactiveFormsModule,CommonModule,RouterModule],
+  imports: [ControlsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]

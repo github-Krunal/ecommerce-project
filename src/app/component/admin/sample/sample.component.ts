@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Component,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { AdminApiService } from '../../../services-api/admin-api.service';
@@ -9,7 +9,7 @@ import { GloabalModule } from '../../../module/gloabal.module';
 @Component({
   selector: 'app-sample',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,GloabalModule,],
+  imports: [ReactiveFormsModule, GloabalModule],
   templateUrl: './sample.component.html',
   styleUrl: './sample.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
