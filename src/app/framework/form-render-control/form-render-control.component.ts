@@ -1,4 +1,5 @@
 
+import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldTypeEnum } from '../../enum/fieldType.enum';
@@ -8,7 +9,7 @@ import { ControlsModule } from '../controls/controls.module';
 @Component({
   selector: 'form-render-control',
   standalone: true,
-  imports: [ControlsModule, ReactiveFormsModule],
+  imports: [ControlsModule, ReactiveFormsModule,CommonModule],
   templateUrl: './form-render-control.component.html',
   styleUrl: './form-render-control.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]

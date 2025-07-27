@@ -1,5 +1,4 @@
-<div class="p-2">
-  @if (frameworkForm) {
+<div class="p-2" *ngIf="frameworkForm">
 <form [formGroup]="frameworkForm" (ngSubmit)="onSubmitFrameworkForm()">
     <div class="d-flex justify-content-end">
     <button mat-flat-button class="me-2" color="warn" (click)="closeFrameworkForm()">
@@ -9,8 +8,6 @@
       <mat-icon>save</mat-icon> Save
     </button>
   </div>
-
   <form-render-control [frameworkForm]="frameworkForm" [fieldDefination]="fieldDefination"></form-render-control>
   </form>
-}
   </div>
