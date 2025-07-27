@@ -1,6 +1,5 @@
 import { LOCAL_STOREAGE_CONSTANT } from './../constant/localstorge.constant';
 import { Injectable } from '@angular/core';
-import { SnackbarComponent } from '../global-component/snackbar/snackbar.component';
 import { IUser } from '../model/login.interface';
 import { SnackbarService } from './snackbar.service';
 
@@ -21,8 +20,10 @@ export class UtilityService {
   }
 
   public getInLocalStorage(key: string) {
+    if (typeof window !== 'undefined' && window.localStorage) {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
+    }
   }
 
   public removeFromLocalStorage(key: string) {

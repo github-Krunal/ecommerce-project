@@ -1,0 +1,20 @@
+.builder-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.controls, .form-canvas {
+  flex: 1;
+  border: 1px dashed #aaa;
+  padding: 10px;
+  min-height: 300px;
+}
+
+.control-item {
+  background: #eee;
+  margin: 5px 0;
+  padding: 8px;
+  cursor: move;
+  border-radius: 4px;
+}

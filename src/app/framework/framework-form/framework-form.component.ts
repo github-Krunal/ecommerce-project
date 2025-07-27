@@ -7,11 +7,12 @@ import { FieldDefination } from '../../model/fieldDefination.interface';
 import { ISaveFrameworkObject } from '../../model/saveFrameworkObject.interface';
 import { FrameworkService } from '../../services-api/framework.service';
 import { ControlsModule } from '../controls/controls.module';
+import { FormRenderControlComponent } from '../form-render-control/form-render-control.component';
 
 @Component({
   selector: 'framework-form',
   standalone: true,
-  imports: [ControlsModule,ReactiveFormsModule,CommonModule],
+  imports: [ControlsModule,ReactiveFormsModule,CommonModule,FormRenderControlComponent],
   templateUrl: './framework-form.component.html',
   styleUrl: './framework-form.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
