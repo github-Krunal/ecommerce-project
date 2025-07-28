@@ -1,3 +1,4 @@
+import { UtilityService } from './../../global-service/utility.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
@@ -18,7 +19,8 @@ import { FormBusinessObjectComponent } from '../form-business-object/form-busine
   imports: [ANGULARMATERIALModule, FormsModule, FormRenderControlComponent,CommonModule,FormBusinessObjectComponent],
   templateUrl: './framework-form-create.component.html',
   styleUrl: './framework-form-create.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
+  providers:[UtilityService]
 })
 export class FrameworkFormCreateComponent {
   public frameworkForm: FormGroup | undefined;
@@ -28,7 +30,7 @@ export class FrameworkFormCreateComponent {
   public fieldDefinationList:FieldDefination[]=[]
   public fieldTypList: FieldTypeEnum[] = Object.values(FieldTypeEnum);
   public repositoryID:string|null="";
-  public selectedFieldDefination:FieldDefination|undefined;
+  public selectedFieldDefination!:FieldDefination;
   public fieldList:any[]=[
     {
       icon:"add",
@@ -40,7 +42,7 @@ export class FrameworkFormCreateComponent {
     }
   ]
 
-  constructor(public frameworkService:FrameworkService,private route: ActivatedRoute,private formBuilder: FormBuilder){}
+  constructor(public frameworkService:FrameworkService,private route: ActivatedRoute,private formBuilder: FormBuilder,private utilityService:UtilityService){}
 
   ngOnInit() {
     this.repositoryID = this.route.snapshot.paramMap.get('id');
@@ -68,7 +70,7 @@ export class FrameworkFormCreateComponent {
       const newField: FieldDefination = {
         fieldType: this.mapNameToFieldType(draggedItem.Name),
         formControlName: `field_${Date.now()}`,
-        label: draggedItem.Name+`name_${this.fieldDefinationList.length}`
+        displayName: draggedItem.Name+`name_${this.fieldDefinationList.length}`
       };
 
       event.container.data.splice(event.currentIndex, 0, newField);
@@ -87,6 +89,7 @@ export class FrameworkFormCreateComponent {
   }
   public submitField(){
     this.frameworkService.updateFieldDefination(this.repositoryID,this.fieldDefinationList).subscribe(response=>{
+      this.utilityService.showSnackbar('Object updated successfully')
     })
   }
 

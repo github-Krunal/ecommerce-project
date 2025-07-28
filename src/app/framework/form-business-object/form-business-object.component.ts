@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FieldDefination } from './../../model/fieldDefination.interface';
-import { Component, Output, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Output, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,5 +13,5 @@ import { FormsModule } from '@angular/forms';
 
 })
 export class FormBusinessObjectComponent {
-  @Output() field!: FieldDefination
+  @Input() field!: FieldDefination
 }

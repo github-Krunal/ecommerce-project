@@ -2,6 +2,6 @@ import { FieldTypeEnum } from "../enum/fieldType.enum";
 
 export interface FieldDefination {
   formControlName: string,
-  label:string,
+  displayName:string,
   fieldType:FieldTypeEnum|null
 }

@@ -1,8 +1,9 @@
-@if (frameworkForm) {
-<div [formGroup]="frameworkForm">
-  <div class="mb-3">
-    <label [for]="field.formControlName" class="form-label" >{{field.label}}</label>
-    <textarea class="form-control" [id]="field.formControlName"[formControlName]="field.formControlName" rows="3"></textarea>
+<ng-container *ngIf="frameworkForm">
+  <div [formGroup]="frameworkForm">
+    <div class="mb-3">
+      <label [for]="field.formControlName" class="form-label">{{field.displayName}}</label>
+      <textarea class="form-control" [id]="field.formControlName" [formControlName]="field.formControlName"
+        rows="3"></textarea>
+    </div>
   </div>
-</div>
-}
+</ng-container>

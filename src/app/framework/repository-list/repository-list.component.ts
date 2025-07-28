@@ -25,12 +25,12 @@ export class RepositoryListComponent implements OnInit {
     fieldDefination:[
       {
             formControlName:'repositoryName',
-            label:'Repository Name',
+            displayName:'Repository Name',
             fieldType:FieldTypeEnum.SINGLE_LINE_FIELD
       },
       {
         formControlName:'description',
-        label:'Description',
+        displayName:'Description',
         fieldType:FieldTypeEnum.MULTI_LINE_FIELD
       },
 
