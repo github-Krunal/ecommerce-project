@@ -1,4 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { IBusinessObject } from '../../model/businessObject.interface';
 import { FieldDefination } from '../../model/fieldDefination.interface';
@@ -26,11 +27,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RecordListComponent {
   @Input() businessObject:IBusinessObject | undefined;
-  displayedColumns: string[] = [];
-  public dataSource:any[]=[];
+  tableColumns: {displayName:string,internalName:string}[] = [];
+  dataSource = new MatTableDataSource<any>([]);
   public repositoryID:string|null="";
   public isOpenSideNav:boolean=false;
-
+public displayedColumns:string[]=[]
 
   constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
@@ -42,21 +43,26 @@ export class RecordListComponent {
   private getBusinessObject() {
     this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
       this.businessObject = objectDefination;
+      this.setDisplayColumns();
     })
-    this.setDisplayColumns();
   }
 
   private setDisplayColumns(){
+    debugger
     let fieldDefination:FieldDefination[]|undefined=this.businessObject?.fieldDefination;
     if(fieldDefination&&fieldDefination.length>0){
-      this.displayedColumns=fieldDefination.map(field=>field.formControlName)
+      this.tableColumns = fieldDefination.map(field => ({
+        displayName: field.displayName,
+        internalName: field.formControlName
+      }));
+      this.displayedColumns = this.tableColumns.map(col => col.internalName);
     }
     this.getRecords();
   }
 
   private getRecords(){
     this.frameworkService.getRecords(this.repositoryID).subscribe((records: any) => {
-      this.dataSource=records
+      this.dataSource=records;
     })
   }
 
