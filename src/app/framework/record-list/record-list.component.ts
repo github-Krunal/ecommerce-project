@@ -31,7 +31,7 @@ export class RecordListComponent {
   dataSource = new MatTableDataSource<any>([]);
   public repositoryID:string|null="";
   public isOpenSideNav:boolean=false;
-public displayedColumns:string[]=[]
+  public displayedColumns:string[]=[]
 
   constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
@@ -48,7 +48,6 @@ public displayedColumns:string[]=[]
   }
 
   private setDisplayColumns(){
-    debugger
     let fieldDefination:FieldDefination[]|undefined=this.businessObject?.fieldDefination;
     if(fieldDefination&&fieldDefination.length>0){
       this.tableColumns = fieldDefination.map(field => ({
@@ -56,8 +55,14 @@ public displayedColumns:string[]=[]
         internalName: field.formControlName
       }));
       this.displayedColumns = this.tableColumns.map(col => col.internalName);
+      this.addActionColumn()
     }
     this.getRecords();
+  }
+
+  private addActionColumn(){
+    this.tableColumns.unshift({displayName:"Action",internalName:"Action"});
+    this.displayedColumns.unshift('Action')
   }
 
   private getRecords(){
@@ -71,5 +76,12 @@ public displayedColumns:string[]=[]
   }
   public closeSidePanel(){
     this.isOpenSideNav=false;
+    this.getRecords();
+  }
+
+  protected onDeleteRecord(recordID: string) {
+    this.frameworkService.deleteRecord(this.repositoryID, recordID).subscribe(response => {
+      this.getRecords();
+    })
   }
 }

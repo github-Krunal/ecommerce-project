@@ -35,4 +35,7 @@ export class FrameworkService {
   public getRecords(id:string|null): Observable<any> {
     return this.http.get<any>(API_CONSTANT.RECORD_GET+`/${id}`)
   }
+  public deleteRecord(repositoryID:string|null,recordID:string): Observable<any> {
+    return this.http.delete<any>(API_CONSTANT.RECORD_Delete+`/${repositoryID}/${recordID}`)
+  }
 }
