@@ -32,10 +32,16 @@ export class FrameworkService {
   public saveRecordForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
     return this.http.post<any>(API_CONSTANT.RECORD_SAVE,saveFrameworkObject)
   }
-  public getRecords(id:string|null): Observable<any> {
-    return this.http.get<any>(API_CONSTANT.RECORD_GET+`/${id}`)
+  public getAllRecords(repositoryID:string|null): Observable<any> {
+    return this.http.get<any>(API_CONSTANT.RECORD_GET+`/${repositoryID}`)
   }
   public deleteRecord(repositoryID:string|null,recordID:string): Observable<any> {
     return this.http.delete<any>(API_CONSTANT.RECORD_Delete+`/${repositoryID}/${recordID}`)
+  }
+  public getSignleRecord(repositoryID:string|null,recordID:string|null): Observable<any> {
+    return this.http.get<any>(API_CONSTANT.SIGNLE_RECORD+`/${repositoryID}/${recordID}`)
+  }
+  public updateForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
+    return this.http.post<any>(API_CONSTANT.UPDATE_RECORD,saveFrameworkObject)
   }
 }

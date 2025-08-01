@@ -23,6 +23,7 @@ export class FrameworkFormComponent {
 
   @Input() businessObject:IBusinessObject | undefined;
   @Input() repositoryID:string|null="";
+  @Input() recordID:string|null="";
   @Output() closeFormEmitter = new EventEmitter<boolean>(false);
   @Output() frameworkFormValueEmitter = new EventEmitter<any>();
   public frameworkForm: FormGroup | undefined;
@@ -49,6 +50,18 @@ export class FrameworkFormComponent {
 
   private initializeFrameworkForm(): void {
     this.frameworkForm = this.formBuilder.group({});
+    if (this.recordID) {
+      this.getRecord();
+    }
+  }
+
+  private getRecord(){
+    this.frameworkService.getSignleRecord(this.repositoryID,this.recordID).subscribe(record=>{
+      this.fieldDefination.forEach(field=>{
+        const fieldValue=record[field.formControlName];
+        this.frameworkForm?.get(field.formControlName)?.setValue(fieldValue);
+      })
+    })
   }
 
   public onSubmitFrameworkForm() {
@@ -56,9 +69,14 @@ export class FrameworkFormComponent {
     if (this.businessObject?.isCustomFormSave) {
       this.frameworkFormValueEmitter.emit(frameworkFormValue)
     }
-    this.saveForm();
+    if (this.recordID) {
+      this.updateForm();
+    } else {
+      this.saveForm();
+    }
     this.closeFrameworkForm();
   }
+
   private saveForm() {
     let saveFrameworkObject:ISaveFrameworkObject={
       repositoryID:this.repositoryID,
@@ -69,6 +87,16 @@ export class FrameworkFormComponent {
     })
   }
 
+  private updateForm() {
+    let saveFrameworkObject:ISaveFrameworkObject={
+      repositoryID:this.repositoryID,
+      recordID:this.recordID,
+      record:this.frameworkForm?.value,
+    };
+    this.frameworkService.updateForm(saveFrameworkObject).subscribe(record=>{
+
+    })
+  }
   public closeFrameworkForm() {
     this.closeFormEmitter.emit(false)
   }

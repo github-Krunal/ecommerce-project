@@ -31,7 +31,8 @@ export class RecordListComponent {
   dataSource = new MatTableDataSource<any>([]);
   public repositoryID:string|null="";
   public isOpenSideNav:boolean=false;
-  public displayedColumns:string[]=[]
+  public displayedColumns:string[]=[];
+  public recordID:string="";
 
   constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
@@ -66,7 +67,7 @@ export class RecordListComponent {
   }
 
   private getRecords(){
-    this.frameworkService.getRecords(this.repositoryID).subscribe((records: any) => {
+    this.frameworkService.getAllRecords(this.repositoryID).subscribe((records: any) => {
       this.dataSource=records;
     })
   }
@@ -79,9 +80,14 @@ export class RecordListComponent {
     this.getRecords();
   }
 
-  protected onDeleteRecord(recordID: string) {
-    this.frameworkService.deleteRecord(this.repositoryID, recordID).subscribe(response => {
+  protected onDeleteRecord(id: string) {
+    this.frameworkService.deleteRecord(this.repositoryID, id).subscribe(response => {
       this.getRecords();
     })
+  }
+
+  protected onEditRecord(id: string){
+    this.isOpenSideNav=true;
+    this.recordID=id;
   }
 }
