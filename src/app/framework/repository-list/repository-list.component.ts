@@ -60,6 +60,7 @@ export class RepositoryListComponent implements OnInit {
   }
   private saveRepositoryForm(repositoryDefination: any){
     this.frameworkService.saveRepositoyFrom(repositoryDefination).subscribe(repositoryResponse=>{
+      this.isOpenSideNav=false;
       this.getAllRespositories();
     })
   }

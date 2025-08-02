@@ -65,16 +65,24 @@ export class FrameworkFormComponent {
   }
 
   public onSubmitFrameworkForm() {
-    let frameworkFormValue = this.frameworkForm?.value;
     if (this.businessObject?.isCustomFormSave) {
-      this.frameworkFormValueEmitter.emit(frameworkFormValue)
+      this.repositoryFormSave();
+    } else {
+      this.frameworkFormSave();
     }
+  }
+
+  private frameworkFormSave() {
     if (this.recordID) {
       this.updateForm();
     } else {
       this.saveForm();
     }
-    this.closeFrameworkForm();
+  }
+
+  private repositoryFormSave(){
+    let frameworkFormValue = this.frameworkForm?.value;
+    this.frameworkFormValueEmitter.emit(frameworkFormValue);
   }
 
   private saveForm() {
@@ -83,7 +91,7 @@ export class FrameworkFormComponent {
       record:this.frameworkForm?.value,
     };
     this.frameworkService.saveRecordForm(saveFrameworkObject).subscribe(record=>{
-
+      this.closeFrameworkForm();
     })
   }
 
@@ -94,7 +102,7 @@ export class FrameworkFormComponent {
       record:this.frameworkForm?.value,
     };
     this.frameworkService.updateForm(saveFrameworkObject).subscribe(record=>{
-
+      this.closeFrameworkForm();
     })
   }
   public closeFrameworkForm() {
