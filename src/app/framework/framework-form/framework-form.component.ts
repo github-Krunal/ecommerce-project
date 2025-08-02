@@ -1,3 +1,4 @@
+import { UtilityService } from './../../global-service/utility.service';
 import { CommonModule } from '@angular/common';
 
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NO_ERRORS_SCHEMA, Output } from '@angular/core';
@@ -31,7 +32,7 @@ export class FrameworkFormComponent {
   protected fieldDefination:FieldDefination[]=[];
   protected fieldTypeEnum = FieldTypeEnum;
 
-  constructor(private formBuilder: FormBuilder,public frameworkService:FrameworkService){}
+  constructor(private formBuilder: FormBuilder,public frameworkService:FrameworkService,private utilityService:UtilityService){}
 
   ngOnInit(): void {
     this.generateForm();
@@ -87,26 +88,30 @@ export class FrameworkFormComponent {
   }
 
   private saveForm() {
-    debugger
-    let saveFrameworkObject:ISaveFrameworkObject={
-      repositoryID:this.repositoryID,
-      record:this.frameworkForm?.value,
-    };
+    let saveFrameworkObject:ISaveFrameworkObject=this.getFormObject('createdBy','createdDate');
     this.frameworkService.saveRecordForm(saveFrameworkObject).subscribe(record=>{
       this.closeFrameworkForm();
     })
   }
 
   private updateForm() {
-    let saveFrameworkObject:ISaveFrameworkObject={
-      repositoryID:this.repositoryID,
-      recordID:this.recordID,
-      record:this.frameworkForm?.value,
-    };
+    let saveFrameworkObject:ISaveFrameworkObject=this.getFormObject('modifieddBy','modifiedDate');
     this.frameworkService.updateForm(saveFrameworkObject).subscribe(record=>{
       this.closeFrameworkForm();
     })
   }
+
+  private getFormObject(user: string, date: string): ISaveFrameworkObject {
+    let saveFrameworkObject: ISaveFrameworkObject = {
+      repositoryID: this.repositoryID,
+      record: this.frameworkForm?.value,
+      recordID: this.recordID,
+    };
+    saveFrameworkObject.record[user] = this.utilityService.getCurrentUserID();
+    saveFrameworkObject.record[date] = this.utilityService.getCurrentDate();
+    return saveFrameworkObject;
+  }
+
   public closeFrameworkForm() {
     this.closeFormEmitter.emit(false)
   }
