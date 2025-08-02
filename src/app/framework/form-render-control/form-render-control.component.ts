@@ -18,6 +18,7 @@ export class FormRenderControlComponent {
   @Input() fieldDefination:FieldDefination[]=[];
   @Input() frameworkForm: FormGroup | undefined;
   @Input() isFieldDefinationCreate:boolean=false;
+  @Input() isViewRecord:boolean=false;
   @Output() fieldEmitter = new EventEmitter<FieldDefination>();
   protected fieldTypeEnum = FieldTypeEnum;
 

@@ -24,6 +24,7 @@ export class FrameworkFormComponent {
   @Input() businessObject:IBusinessObject | undefined;
   @Input() repositoryID:string|null="";
   @Input() recordID:string|null="";
+  @Input() isViewRecord:boolean=false;
   @Output() closeFormEmitter = new EventEmitter<boolean>(false);
   @Output() frameworkFormValueEmitter = new EventEmitter<any>();
   public frameworkForm: FormGroup | undefined;
@@ -86,6 +87,7 @@ export class FrameworkFormComponent {
   }
 
   private saveForm() {
+    debugger
     let saveFrameworkObject:ISaveFrameworkObject={
       repositoryID:this.repositoryID,
       record:this.frameworkForm?.value,

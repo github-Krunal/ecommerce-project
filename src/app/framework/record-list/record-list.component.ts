@@ -9,14 +9,6 @@ import { FrameworkService } from '../../services-api/framework.service';
 import { FrameworkFormComponent } from '../framework-form/framework-form.component';
 import { FrameworkTableComponent } from '../framework-table/framework-table.component';
 
-export interface PeriodicElement {
-  first: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {first: "1"},
-
-];
 @Component({
   selector: 'record-list',
   standalone: true,
@@ -33,6 +25,7 @@ export class RecordListComponent {
   public isOpenSideNav:boolean=false;
   public displayedColumns:string[]=[];
   public recordID:string="";
+  public isViewRecord:boolean=false;
 
   constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
@@ -77,6 +70,7 @@ export class RecordListComponent {
   }
   public closeSidePanel(){
     this.isOpenSideNav=false;
+    this.isViewRecord=false;
     this.getRecords();
   }
 
@@ -89,5 +83,10 @@ export class RecordListComponent {
   protected onEditRecord(id: string){
     this.isOpenSideNav=true;
     this.recordID=id;
+  }
+  protected onViewRecord(id: string){
+    this.isOpenSideNav=true;
+    this.recordID=id;
+    this.isViewRecord=true;
   }
 }

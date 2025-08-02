@@ -17,11 +17,25 @@ export class SingleLineFieldComponent implements OnInit{
 
   @Input() field!: FieldDefination;
   @Input() frameworkForm!: FormGroup;
+  @Input() isViewRecord: boolean=false;
+  protected fieldValue:string="";
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+  private initializeForm(){
     this.addControlInForm();
-  }
-  private addControlInForm(): void {
-    this.frameworkForm?.addControl(this.field.formControlName, new FormControl(''));
-  }
+ }
+
+ private getFormValue(){
+   this.frameworkForm.get(this.field.formControlName)?.valueChanges.subscribe(value => {
+     this.fieldValue=value;
+   });
+ }
+
+ private addControlInForm(): void {
+   this.frameworkForm?.addControl(this.field.formControlName, new FormControl(''));
+   this.getFormValue();
+ }
+
 }

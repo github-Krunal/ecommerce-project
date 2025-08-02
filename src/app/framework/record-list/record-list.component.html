@@ -29,6 +29,10 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
+            <button mat-menu-item  (click)="onViewRecord(row._id)">
+              <mat-icon>visibility</mat-icon>
+              <span>View</span>
+            </button>
             <button mat-menu-item  (click)="onEditRecord(row._id)">
               <mat-icon>edit</mat-icon>
               <span>Edit</span>
@@ -49,6 +53,6 @@
 </div>
 
 <gb-right-panel [isOpenSideNav]="isOpenSideNav" *ngIf="isOpenSideNav">
-  <framework-form (closeFormEmitter)="closeSidePanel()" [repositoryID]="repositoryID" [businessObject]="businessObject" [recordID]="recordID">
+  <framework-form (closeFormEmitter)="closeSidePanel()" [repositoryID]="repositoryID" [businessObject]="businessObject" [recordID]="recordID" [isViewRecord]="isViewRecord">
   </framework-form>
 </gb-right-panel>

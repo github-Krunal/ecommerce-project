@@ -8,7 +8,7 @@
       <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
         <mat-icon (click)="deleteField(index)">close</mat-icon>
       </div>
-      <single-line-field [field]="field" [frameworkForm]="frameworkForm">
+      <single-line-field [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
       </single-line-field>
     </div>
 
@@ -19,7 +19,7 @@
       <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
         <mat-icon (click)="deleteField(index)">close</mat-icon>
       </div>
-      <multi-line-field [field]="field" [frameworkForm]="frameworkForm">
+      <multi-line-field [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
       </multi-line-field>
     </div>
 
