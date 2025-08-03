@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { RightPanelComponent } from '../global-component/right-panel/right-panel.component';
 import { SnackbarComponent } from '../global-component/snackbar/snackbar.component';
 import { HeaderComponent } from '../global-component/header/header.component';
+import { LoaderComponent } from '../global-component/loader/loader.component';
+import { NoRecordFoundComponent } from '../global-component/no-record-found/no-record-found.component';
 
 
 
@@ -19,7 +21,9 @@ const MODULES=[
 const COMPONENT=[
   RightPanelComponent,
   SnackbarComponent,
-  HeaderComponent
+  HeaderComponent,
+  LoaderComponent,
+  NoRecordFoundComponent
 ]
 @NgModule({
   declarations: [],
