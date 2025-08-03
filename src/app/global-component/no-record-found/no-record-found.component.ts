@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-no-record-found',
+  selector: 'no-record-found',
   standalone: true,
   imports: [],
   templateUrl: './no-record-found.component.html',

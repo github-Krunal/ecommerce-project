@@ -1,3 +1,4 @@
+import { IRepositoryDefination } from './../../model/repositoryDefination.interface';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +19,7 @@ import { FrameworkTableComponent } from '../framework-table/framework-table.comp
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
 })
 export class RecordListComponent {
-  @Input() businessObject:IBusinessObject | undefined;
+  public businessObject:IRepositoryDefination | undefined;
   tableColumns: {displayName:string,internalName:string}[] = [];
   dataSource = new MatTableDataSource<any>([]);
   public repositoryID:string|null="";
@@ -35,7 +36,7 @@ export class RecordListComponent {
   }
 
   private getBusinessObject() {
-    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IBusinessObject) => {
+    this.frameworkService.getSingleRepository(this.repositoryID).subscribe((objectDefination: IRepositoryDefination) => {
       this.businessObject = objectDefination;
       this.setDisplayColumns();
     })

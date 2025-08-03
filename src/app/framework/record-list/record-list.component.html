@@ -1,5 +1,6 @@
 <div class="container mt-2">
-  <h6>Record List</h6>
+  <div class=" d-flex justify-content-between">
+  <h6>{{businessObject?.repositoryName}}</h6>
   <div>
     <button mat-flat-button class="mat-elevation-z8 float-end mb-2" [matMenuTriggerFor]="menu">
       <mat-icon>add</mat-icon> Actions
@@ -15,7 +16,7 @@
       </button>
     </mat-menu>
   </div>
-
+</div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="displayedColumns.length > 0">
     <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.internalName">
       <ng-container *ngIf="column.internalName!='Action'">

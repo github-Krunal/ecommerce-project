@@ -6,6 +6,7 @@
     </button>
   </div>
 
+
   <table mat-table [dataSource]="respositoryList" class="mat-elevation-z8 ">
     <ng-container matColumnDef="repositoryName">
       <th mat-header-cell *matHeaderCellDef> Repository Name </th>
@@ -37,7 +38,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+  <no-record-found *ngIf="respositoryList.length===0&&!isloader"></no-record-found>
+  <gb-loader *ngIf="isloader"></gb-loader>
 </div>
 <gb-right-panel [isOpenSideNav]="isOpenSideNav" *ngIf="isOpenSideNav">
   <framework-form [businessObject]="businessObject" (closeFormEmitter)="closeSidePanel()" (frameworkFormValueEmitter)="getframeweFormValue($event)"></framework-form>

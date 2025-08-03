@@ -20,7 +20,7 @@ import { IRepositoryDefination } from '../../model/repositoryDefination.interfac
 })
 export class RepositoryListComponent implements OnInit {
   protected isOpenSideNav:boolean=false;
-  public businessObject:IBusinessObject={
+  public businessObject:IRepositoryDefination={
     isCustomFormSave:true,
     fieldDefination:[
       {
@@ -40,7 +40,7 @@ export class RepositoryListComponent implements OnInit {
 
   displayedColumns: string[] = ['Action','repositoryName', 'description'];
   dataSource:any =[];
-
+  protected isloader:boolean=true;
   constructor(private frameworkService:FrameworkService,private utilityService:UtilityService){}
 
   ngOnInit(): void {
@@ -67,7 +67,8 @@ export class RepositoryListComponent implements OnInit {
 
   private getAllRespositories(){
     this.frameworkService.getRepositoyList().subscribe(responsitories=>{
-      this.respositoryList=responsitories;
+        this.respositoryList=responsitories;
+        this.isloader=false;
     })
   }
 

@@ -1,3 +1,4 @@
+import { IRepositoryDefination } from './../../model/repositoryDefination.interface';
 import { UtilityService } from './../../global-service/utility.service';
 import { CommonModule } from '@angular/common';
 
@@ -22,7 +23,7 @@ import { FormRenderControlComponent } from '../form-render-control/form-render-c
 })
 export class FrameworkFormComponent {
 
-  @Input() businessObject:IBusinessObject | undefined;
+  @Input() businessObject:IRepositoryDefination | undefined;
   @Input() repositoryID:string|null="";
   @Input() recordID:string|null="";
   @Input() isViewRecord:boolean=false;
