@@ -22,4 +22,8 @@ export const routes: Routes = [
     path:"repository",
     loadChildren:()=>import('../app/framework/framework.module').then(framework=>framework.FrameworkModule)
   },
+  {
+    path:"tutor",
+    loadChildren:()=>import('../app/component/tutor/tutor.module').then(framework=>framework.TutorModule)
+  },
 ];
