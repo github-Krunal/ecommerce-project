@@ -2,16 +2,25 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TutorDashboardComponent } from './tutor-dashboard/tutor-dashboard.component';
+import { TutorLayoutComponent } from './tutor-layout/tutor-layout.component';
+import { TutorHeaderComponent } from './tutor-header/tutor-header.component';
 
 const TUTOR_ROUTES:Routes=[
   {
-    path:'',
-    redirectTo:"dashboard",
-    pathMatch:"full"
-  },
-  {
-    path:'dashboard',
-    component:TutorDashboardComponent,
+    path: '',
+    component: TutorLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+    ],
   },
 ]
 
@@ -19,7 +28,8 @@ const TUTOR_ROUTES:Routes=[
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(TUTOR_ROUTES)
+    RouterModule.forChild(TUTOR_ROUTES),
+    TutorHeaderComponent
   ]
 })
 export class TutorModule { }
