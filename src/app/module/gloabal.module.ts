@@ -8,6 +8,7 @@ import { SnackbarComponent } from '../global-component/snackbar/snackbar.compone
 import { HeaderComponent } from '../global-component/header/header.component';
 import { LoaderComponent } from '../global-component/loader/loader.component';
 import { NoRecordFoundComponent } from '../global-component/no-record-found/no-record-found.component';
+import { CommonTableComponent } from '../global-component/common-table/common-table.component';
 
 
 
@@ -23,7 +24,8 @@ const COMPONENT=[
   SnackbarComponent,
   HeaderComponent,
   LoaderComponent,
-  NoRecordFoundComponent
+  NoRecordFoundComponent,
+  CommonTableComponent
 ]
 @NgModule({
   declarations: [],

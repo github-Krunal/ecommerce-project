@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { GloabalModule } from '../../../module/gloabal.module';
 
 @Component({
   selector: 'tutor-courses',
   standalone: true,
-  imports: [],
+  imports: [GloabalModule],
   templateUrl: './tutor-courses.component.html',
   styleUrl: './tutor-courses.component.scss'
 })
