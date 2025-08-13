@@ -1,0 +1,18 @@
+ ul {
+  list-style: none;
+  padding: 0;
+}
+
+ ul li {
+  padding: 10px 20px;
+}
+
+ ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+ ul li:hover {
+  background: #444;
+}

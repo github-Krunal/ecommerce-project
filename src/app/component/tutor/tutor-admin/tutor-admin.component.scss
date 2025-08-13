@@ -1,0 +1,17 @@
+/* Sidebar Styles */
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #333;
+  color: white;
+  padding: 20px 0;
+  position: fixed;
+}
+
+
+/* Main Content */
+.content {
+  margin-left: 200px; /* same as sidebar width */
+  padding: 20px;
+  flex: 1;
+}
