@@ -16,6 +16,11 @@ const TUTOR_ROUTES:Routes=[
           import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
       },
       {
+        path: 'admin',
+        loadComponent: () =>
+          import('../tutor/tutor-admin/tutor-admin.component').then((m) => m.TutorAdminComponent),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
