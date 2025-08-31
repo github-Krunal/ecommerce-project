@@ -16,9 +16,9 @@ const TUTOR_ROUTES:Routes=[
           import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
       },
       {
-        path: 'admin',
+        path: 'instructor',
         loadComponent: () =>
-          import('./admin/tutor-admin/tutor-admin.component').then((m) => m.TutorAdminComponent),
+          import('./instructor/instuctor-sidebar/instuctor-sidebar.component').then((m) => m.InstuctorSidebarComponent),
           children:[
             {
               path:'',
@@ -28,12 +28,12 @@ const TUTOR_ROUTES:Routes=[
               {
                 path: 'dashboard',
                 loadComponent: () =>
-                  import('../tutor/admin/tutor-admin-dashboard/tutor-admin-dashboard.component').then((m) => m.TutorAdminDashboardComponent),
+                  import('../tutor/instructor/instructor-dashboard/instructor-dashboard.component').then((m) => m.InstructorDashboardComponent),
               },
               {
                 path: 'courses',
                 loadComponent: () =>
-                  import('../tutor/admin/tutor-admin-courses/tutor-admin-courses.component').then((m) => m.TutorAdminCoursesComponent),
+                  import('../tutor/instructor/instructor-courses/instructor-courses.component').then((m) => m.InstructorCoursesComponent),
               },
 
           ]
