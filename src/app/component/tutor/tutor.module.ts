@@ -11,9 +11,14 @@ const TUTOR_ROUTES:Routes=[
     component: TutorLayoutComponent,
     children: [
       {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
+      },
+      {
         path: 'admin',
         loadComponent: () =>
-          import('../tutor/tutor-admin/tutor-admin.component').then((m) => m.TutorAdminComponent),
+          import('./admin/tutor-admin/tutor-admin.component').then((m) => m.TutorAdminComponent),
           children:[
             {
               path:'',
@@ -23,15 +28,20 @@ const TUTOR_ROUTES:Routes=[
               {
                 path: 'dashboard',
                 loadComponent: () =>
-                  import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
+                  import('../tutor/admin/tutor-admin-dashboard/tutor-admin-dashboard.component').then((m) => m.TutorAdminDashboardComponent),
               },
               {
                 path: 'courses',
                 loadComponent: () =>
-                  import('../tutor/tutor-courses/tutor-courses.component').then((m) => m.TutorCoursesComponent),
+                  import('../tutor/admin/tutor-admin-courses/tutor-admin-courses.component').then((m) => m.TutorAdminCoursesComponent),
               },
 
           ]
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
     ],
   },
