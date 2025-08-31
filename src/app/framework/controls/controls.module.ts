@@ -4,10 +4,12 @@ import { SingleLineFieldComponent } from './single-line-field/single-line-field.
 import {MatTableModule} from '@angular/material/table';
 import { ANGULARMATERIALModule } from '../../module/angular-material.module';
 import { MultiLineFieldComponent } from './multi-line-field/multi-line-field.component';
+import { LookUpComponent } from './look-up/look-up.component';
 
 const COMPONENTS=[
   SingleLineFieldComponent,
-  MultiLineFieldComponent
+  MultiLineFieldComponent,
+  LookUpComponent
 ]
 
 @NgModule({

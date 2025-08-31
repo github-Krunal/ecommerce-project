@@ -23,5 +23,17 @@
       </multi-line-field>
     </div>
 
+    <!-- look up control -->
+
+    <div *ngIf="field?.fieldType === fieldTypeEnum.LOOK_UP_FIELD"
+      [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+      [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+      <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+        <mat-icon (click)="deleteField(index)">close</mat-icon>
+      </div>
+      <look-up [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
+      </look-up>
+    </div>
+
   </ng-container>
 </div>

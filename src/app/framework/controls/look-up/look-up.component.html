@@ -1,0 +1,11 @@
+<ng-container *ngIf="frameworkForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{field.displayName}}</mat-label>
+    <input type="text" matInput [formControlName]="field.formControlName" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</ng-container>

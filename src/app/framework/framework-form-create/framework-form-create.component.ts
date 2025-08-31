@@ -39,6 +39,10 @@ export class FrameworkFormCreateComponent {
     {
       icon:"add",
       Name:"Multi-line Field"
+    },
+    {
+      icon:"add",
+      Name:"Lookup Field"
     }
   ]
 
@@ -83,6 +87,8 @@ export class FrameworkFormCreateComponent {
         return FieldTypeEnum.SINGLE_LINE_FIELD;
       case 'Multi-line Field':
         return FieldTypeEnum.MULTI_LINE_FIELD;
+      case 'Lookup Field':
+        return FieldTypeEnum.LOOK_UP_FIELD;
       default:
         return FieldTypeEnum.SINGLE_LINE_FIELD;
     }
