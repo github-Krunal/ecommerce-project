@@ -11,19 +11,27 @@ const TUTOR_ROUTES:Routes=[
     component: TutorLayoutComponent,
     children: [
       {
-        path: 'dashboard',
-        loadComponent: () =>
-          import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
-      },
-      {
         path: 'admin',
         loadComponent: () =>
           import('../tutor/tutor-admin/tutor-admin.component').then((m) => m.TutorAdminComponent),
-      },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
+          children:[
+            {
+              path:'',
+              pathMatch:'full',
+              redirectTo:'dashboard'
+            },
+              {
+                path: 'dashboard',
+                loadComponent: () =>
+                  import('../tutor/tutor-dashboard/tutor-dashboard.component').then((m) => m.TutorDashboardComponent),
+              },
+              {
+                path: 'courses',
+                loadComponent: () =>
+                  import('../tutor/tutor-courses/tutor-courses.component').then((m) => m.TutorCoursesComponent),
+              },
+
+          ]
       },
     ],
   },
