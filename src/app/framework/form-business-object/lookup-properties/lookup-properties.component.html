@@ -1,0 +1,6 @@
+<label  class="form-label">Repository Name</label>
+<select class="form-select" aria-label="Default select example">
+  <option *ngFor="let food of foods" [value]="food.value" class="form-control">
+    {{ food.viewValue }}
+  </option>
+</select>

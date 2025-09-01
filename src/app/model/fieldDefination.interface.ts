@@ -5,4 +5,7 @@ export interface FieldDefination {
   formControlName: string,
   displayName:string,
   fieldType:FieldTypeEnum|null,
+  lookupRepositoryName?:string;
+  lookupField1?:string;
+  lookupfield2?:string;
 }

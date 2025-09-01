@@ -9,4 +9,9 @@
   <label for="internalName" class="form-label">Internal Name</label>
   <input type="text" class="form-control" id="internalName" [(ngModel)]="field.formControlName">
 </div>
+
+<ng-container *ngIf="field.fieldType===fieldTypeEnum.LOOK_UP_FIELD">
+  <lookup-properties></lookup-properties>
+</ng-container>
+
 </ng-container>
