@@ -15,6 +15,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 
 const ANGULAR_MATERIAL_MODULE=[
   MatSelectModule,
@@ -31,6 +32,7 @@ const ANGULAR_MATERIAL_MODULE=[
   MatToolbarModule,
   DragDropModule,
   MatAutocompleteModule,
+  MatChipsModule
 
 ]
 

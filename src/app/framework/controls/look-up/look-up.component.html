@@ -1,11 +1,36 @@
 <ng-container *ngIf="frameworkForm">
-  <mat-form-field class="example-full-width">
-    <mat-label>{{field.displayName}}</mat-label>
-    <input type="text" matInput [formControlName]="field.formControlName" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+  <div class="mb-3 " [formGroup]="frameworkForm">
+    <label class="form-label">{{ field.displayName }}</label>
+
+    <!-- Chip grid -->
+    <mat-chip-grid #chipGrid aria-label="Chip selection" class="form-control p-2">
+      <mat-chip-row *ngFor="let value of selectedValues" (removed)="remove(value)">
+        {{ value.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + value.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+
+      <!-- Input box styled like Bootstrap -->
+      <input
+        type="text"
+        class="form-control border-0 shadow-none p-0"
+        placeholder=""
+        #chipInput
+        [formControlName]="field.formControlName"
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matAutocomplete]="auto" />
+    </mat-chip-grid>
+
+    <!-- Autocomplete dropdown -->
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayFn"
+      (optionSelected)="selected($event)">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{ option.name }}
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+  </div>
 </ng-container>
