@@ -1,4 +1,11 @@
-<label  class="form-label">Repository Name</label>
+<label  class="form-label">Lookup Repository Name</label>
+<select class="form-select"  aria-label="Default select example">
+  <option *ngFor="let repository of repositoryList" [value]="repository._id" class="form-control">
+    {{ repository.repositoryName }}
+  </option>
+</select>
+
+<label  class="form-label mt-3">Lookup Field1</label>
 <select class="form-select"  aria-label="Default select example">
   <option *ngFor="let repository of repositoryList" [value]="repository._id" class="form-control">
     {{ repository.repositoryName }}
