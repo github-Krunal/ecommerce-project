@@ -33,7 +33,7 @@ export class FrameworkService {
   public saveRecordForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
     return this.http.post<any>(API_CONSTANT.RECORD_SAVE,saveFrameworkObject)
   }
-  public getAllRecords(repositoryID:string|null): Observable<any> {
+  public getAllRecords(repositoryID?:string): Observable<any> {
     return this.http.get<any>(API_CONSTANT.RECORD_GET+`/${repositoryID}`)
   }
   public deleteRecord(repositoryID:string|null,recordID:string): Observable<any> {

@@ -22,7 +22,7 @@ export class RecordListComponent {
   public businessObject:IRepositoryDefination | undefined;
   tableColumns: {displayName:string,internalName:string}[] = [];
   dataSource = new MatTableDataSource<any>([]);
-  public repositoryID:string|null="";
+  public repositoryID:string="";
   public isOpenSideNav:boolean=false;
   public displayedColumns:string[]=[];
   public recordID:string="";
@@ -31,7 +31,7 @@ export class RecordListComponent {
   constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
 
   ngOnInit() {
-    this.repositoryID = this.route.snapshot.paramMap.get('id');
+    this.repositoryID = this.route.snapshot.paramMap.get('id')??'';
     this.getBusinessObject()
   }
 

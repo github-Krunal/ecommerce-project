@@ -8,6 +8,7 @@ import { ANGULARMATERIALModule } from '../../../module/angular-material.module';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { FrameworkService } from '../../../services-api/framework.service';
 
 @Component({
   selector: 'look-up',
@@ -19,13 +20,15 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 })
 export class LookUpComponent {
-  options: any[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }];
+  options: any[] = [];
   @Input() field!: FieldDefination;
   @Input() frameworkForm!: FormGroup;
   @Input() isViewRecord: boolean = false;
   filteredOptions: Observable<any[]> | undefined;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedValues: any[] = [];   // Store selected chips here
+
+  constructor(private frameworkService:FrameworkService){}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -35,7 +38,14 @@ export class LookUpComponent {
   }
   private addControlInForm(): void {
     this.frameworkForm?.addControl(this.field.formControlName, new FormControl(''));
-    this.initalizeLookupFilter();
+    this.getLookupFieldRecord();
+  }
+
+  private getLookupFieldRecord(){
+    this.frameworkService.getAllRecords(this.field.lookupRepositoryName).subscribe((lookupResponse:any)=>{
+      this.options=lookupResponse;
+      this.initalizeLookupFilter();
+    })
   }
 
   private initalizeLookupFilter() {
@@ -44,7 +54,7 @@ export class LookUpComponent {
       this.filteredOptions = lookUpcontrol.valueChanges.pipe(
         startWith(''),
         map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
+          const name = typeof value === 'string' ? value : value[this.field.lookupField1?this.field.lookupField1:''];
           return name ? this._filter(name as string) : this.options.slice();
         }),
       );
@@ -52,7 +62,7 @@ export class LookUpComponent {
 
   private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option[this.field.lookupField1?this.field.lookupField1:''].toLowerCase().includes(filterValue));
   }
   displayFn(user: any): string {
     return user && user.name ? user.name : '';
