@@ -32,8 +32,8 @@ const ANGULAR_MATERIAL_MODULE=[
   MatToolbarModule,
   DragDropModule,
   MatAutocompleteModule,
-  MatChipsModule
-
+  MatChipsModule,
+  FormsModule
 ]
 
 @NgModule({
