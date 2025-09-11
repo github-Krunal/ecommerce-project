@@ -20,7 +20,10 @@
         [formControlName]="field.formControlName"
         [matChipInputFor]="chipGrid"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matAutocomplete]="auto" />
+        [matAutocomplete]="auto"
+        [(ngModel)]="currentInput"
+        (matChipInputTokenEnd)="add($event)"
+        />
     </mat-chip-grid>
 
     <!-- Autocomplete dropdown -->
