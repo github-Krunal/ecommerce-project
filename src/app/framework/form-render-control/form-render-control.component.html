@@ -35,5 +35,16 @@
       </look-up>
     </div>
 
+     <!-- Checkbox  Field -->
+     <div *ngIf="field?.fieldType === fieldTypeEnum.CHECKBOX_FIELD"
+     [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+     [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+     <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+       <mat-icon (click)="deleteField(index)">close</mat-icon>
+     </div>
+     <check-box [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
+     </check-box>
+   </div>
+
   </ng-container>
 </div>
