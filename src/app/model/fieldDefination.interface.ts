@@ -7,5 +7,5 @@ export interface FieldDefination {
   fieldType:FieldTypeEnum|null,
   lookupRepositoryName?:string;
   lookupField1?:string;
-  lookupfield2?:string;
+  lookupField2?:string;
 }

@@ -5,8 +5,8 @@
     <!-- Chip grid -->
     <mat-chip-grid #chipGrid aria-label="Chip selection" class="form-control p-2">
       <mat-chip-row *ngFor="let value of selectedValues" (removed)="remove(value)">
-        {{ value[field.lookupField1?field.lookupField1:''] }}
-        <button matChipRemove [attr.aria-label]="'remove ' + value[field.lookupField1?field.lookupField1:'']">
+        {{ value }}
+        <button matChipRemove [attr.aria-label]="'remove ' + value">
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip-row>
@@ -32,7 +32,7 @@
       [displayWith]="displayFn"
       (optionSelected)="selected($event)">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{ option[field.lookupField1?field.lookupField1:''] }}
+        {{ option }}
       </mat-option>
     </mat-autocomplete>
   </div>

@@ -42,11 +42,28 @@ export class LookUpComponent {
     this.getLookupFieldRecord();
   }
 
+  private setControlValue(){
+    this.selectedValues=this.frameworkForm.get(this.field.formControlName)?.value;
+  }
+
   private getLookupFieldRecord(){
     this.frameworkService.getAllRecords(this.field.lookupRepositoryName).subscribe((lookupResponse:any)=>{
-      this.options=lookupResponse;
+      this.options=this.convertLookupOption(lookupResponse);
       this.initalizeLookupFilter();
+      this.setControlValue();
     })
+  }
+
+  private convertLookupOption(lookupResponse: any[]): string[] {
+    if (!lookupResponse || lookupResponse.length === 0) {
+      return [];
+    }
+
+    return lookupResponse.map(value => {
+      const field1 = this.field.lookupField1 ? value[this.field.lookupField1] : '';
+      const field2 = this.field.lookupField2 ? value[this.field.lookupField2] : '';
+      return `${field1} ${field2}`.trim(); // Combine and clean
+    });
   }
 
   private initalizeLookupFilter() {
@@ -55,7 +72,7 @@ export class LookUpComponent {
       this.filteredOptions = lookUpcontrol.valueChanges.pipe(
         startWith(''),
         map(value => {
-          const name = typeof value === 'string' ? value : value[this.field.lookupField1?this.field.lookupField1:''];
+          const name = typeof value === 'string' ? value : value;
           return name ? this._filter(name as string) : this.options.slice();
         }),
       );
@@ -63,7 +80,7 @@ export class LookUpComponent {
 
   private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
-    return this.options.filter(option => option[this.field?.lookupField1?this.field.lookupField1:''].toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   displayFn(user: any): string {
     return user && user.name ? user.name : '';
@@ -71,7 +88,6 @@ export class LookUpComponent {
   selected(event: MatAutocompleteSelectedEvent): void {
     const value = event.option.value;
     if (value && !this.selectedValues.includes(value)) {
-      const lookupvalue=value[this.field.lookupField1?this.field.lookupField1:'']
       this.selectedValues.push(value);
     }
     this.frameworkForm.get(this.field.formControlName)?.setValue(this.selectedValues);
