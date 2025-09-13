@@ -46,5 +46,16 @@
      </check-box>
    </div>
 
+    <!-- attachment  Field -->
+    <div *ngIf="field?.fieldType === fieldTypeEnum.ATTACHMENT_FIELD"
+    [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+    [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+    <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+      <mat-icon (click)="deleteField(index)">close</mat-icon>
+    </div>
+    <attachment [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
+    </attachment>
+  </div>
+
   </ng-container>
 </div>

@@ -25,7 +25,7 @@ export class LookUpComponent {
   @Input() frameworkForm!: FormGroup;
   @Input() isViewRecord: boolean = false;
   @ViewChild('chipInput') chipInput!: ElementRef<HTMLInputElement>;
-  filteredOptions: Observable<any[]> | undefined;
+  filteredOptions!: Observable<any[]>; // not string
   separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedValues: any[] = [];   // Store selected chips here
   protected currentInput:string="";
@@ -49,7 +49,7 @@ export class LookUpComponent {
   private getLookupFieldRecord(){
     this.frameworkService.getAllRecords(this.field.lookupRepositoryName).subscribe((lookupResponse:any)=>{
       this.options=this.convertLookupOption(lookupResponse);
-      this.initalizeLookupFilter();
+      this.initializeLookupFilter();
       this.setControlValue();
     })
   }
@@ -66,21 +66,24 @@ export class LookUpComponent {
     });
   }
 
-  private initalizeLookupFilter() {
-    const lookUpcontrol = this.frameworkForm.get(this.field.formControlName);
-    if (lookUpcontrol)
-      this.filteredOptions = lookUpcontrol.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value;
-          return name ? this._filter(name as string) : this.options.slice();
-        }),
-      );
+  private initializeLookupFilter() {
+    const lookUpControl = this.frameworkForm.get(this.field.formControlName);
+
+    this.filteredOptions = lookUpControl!.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const searchValue =
+          typeof value === 'string' ? value : value?.display ?? '';
+        return this._filter(searchValue);
+      })
+    );
   }
 
   private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option =>
+      option.display.toLowerCase().includes(filterValue)
+    );
   }
   displayFn(user: any): string {
     return user && user.name ? user.name : '';

@@ -47,6 +47,10 @@ export class FrameworkFormCreateComponent {
     {
       icon:"add",
       Name:"Checkbox Field"
+    },
+    {
+      icon:"add",
+      Name:"Attachment Field"
     }
   ]
 
@@ -94,8 +98,9 @@ export class FrameworkFormCreateComponent {
       case 'Lookup Field':
         return FieldTypeEnum.LOOK_UP_FIELD;
       case 'Checkbox Field':
-        debugger
         return FieldTypeEnum.CHECKBOX_FIELD;
+        case 'Attachment Field':
+        return FieldTypeEnum.ATTACHMENT_FIELD;
       default:
         return FieldTypeEnum.SINGLE_LINE_FIELD;
     }

@@ -5,12 +5,14 @@ import { ANGULARMATERIALModule } from '../../module/angular-material.module';
 import { MultiLineFieldComponent } from './multi-line-field/multi-line-field.component';
 import { LookUpComponent } from './look-up/look-up.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
+import { AttachmentComponent } from './attachment/attachment.component';
 
 const COMPONENTS=[
   SingleLineFieldComponent,
   MultiLineFieldComponent,
   LookUpComponent,
-  CheckBoxComponent
+  CheckBoxComponent,
+  AttachmentComponent
 ]
 
 @NgModule({
