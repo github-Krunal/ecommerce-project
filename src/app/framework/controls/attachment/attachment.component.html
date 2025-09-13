@@ -4,7 +4,7 @@
   <div [formGroup]="frameworkForm" *ngIf="!isViewRecord">
     <div class="mb-3">
       <label for="formFileSm" class="form-label">{{field.displayName}}</label>
-      <input class="form-control form-control-sm" id="formFileSm" type="file">
+      <input class="form-control form-control-sm" id="formFileSm" type="file" (change)="onFileSelected($event)">
     </div>
   </div>
   <ng-container *ngIf="isViewRecord">

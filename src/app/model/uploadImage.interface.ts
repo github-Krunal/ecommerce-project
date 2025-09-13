@@ -1,4 +1,4 @@
-export interface IUploadImageResponse{
+export interface IAttachmentResponse{
      fileurl:string;
      message:string
 }

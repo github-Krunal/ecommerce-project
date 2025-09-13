@@ -7,6 +7,7 @@ import { FieldDefination } from '../model/fieldDefination.interface';
 import { IOfferBanner } from '../model/offerBanner.interface';
 import { IRepositoryDefination } from '../model/repositoryDefination.interface';
 import { ISaveFrameworkObject } from '../model/saveFrameworkObject.interface';
+import { IAttachmentResponse } from '../model/uploadImage.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,13 @@ export class FrameworkService {
   }
   public updateForm(saveFrameworkObject:ISaveFrameworkObject): Observable<any[]> {
     return this.http.post<any>(API_CONSTANT.UPDATE_RECORD,saveFrameworkObject)
+  }
+
+  public uploadAttachment(file: File | null): Observable<IAttachmentResponse> {
+    const formData = new FormData();
+    if (file) {
+      formData.append('file', file);
+    }
+    return this.http.post<IAttachmentResponse>(API_CONSTANT.ATTACHMENT_UPLOAD, formData)
   }
 }

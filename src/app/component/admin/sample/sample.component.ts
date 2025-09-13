@@ -2,7 +2,7 @@
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Component,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { AdminApiService } from '../../../services-api/admin-api.service';
-import { IUploadImageResponse } from '../../../model/uploadImage.interface';
+import { IAttachmentResponse } from '../../../model/uploadImage.interface';
 import { IOfferBanner } from '../../../model/offerBanner.interface';
 import { GloabalModule } from '../../../module/gloabal.module';
 
@@ -60,7 +60,7 @@ export class SampleComponent {
 
   private uploadImage(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.adminApiService.uploadImage(this.selectedBannerFile).subscribe((uploadImageResponse: IUploadImageResponse) => {
+      this.adminApiService.uploadImage(this.selectedBannerFile).subscribe((uploadImageResponse: IAttachmentResponse) => {
         this.bannerForm?.controls['ImageURL'].setValue(uploadImageResponse.fileurl);
         resolve(true)
       })
