@@ -1,5 +1,5 @@
 <ng-container *ngIf="frameworkForm">
-  <div class="mb-3 " [formGroup]="frameworkForm">
+  <div class="mb-3 " [formGroup]="frameworkForm" *ngIf="!isViewRecord">
     <label class="form-label">{{ field.displayName }}</label>
 
     <!-- Chip grid -->
@@ -38,4 +38,10 @@
       </ng-container>
     </mat-autocomplete>
   </div>
+
+  <ng-container *ngIf="isViewRecord">
+    <div class=" fw-bold">{{field.displayName}}</div>
+    <div >{{fieldValue}}</div>
+  </ng-container>
+
 </ng-container>

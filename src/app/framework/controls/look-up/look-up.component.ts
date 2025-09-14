@@ -29,6 +29,7 @@ export class LookUpComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedValues: any[] = [];   // Store selected chips here
   protected currentInput:string="";
+  protected fieldValue:string="";
   constructor(private frameworkService:FrameworkService){}
 
   ngOnInit(): void {
@@ -44,6 +45,9 @@ export class LookUpComponent {
 
   private setControlValue(){
     this.selectedValues=this.frameworkForm.get(this.field.formControlName)?.value;
+    if(this.selectedValues&&this.selectedValues.length>0){
+      this.fieldValue=this.selectedValues.join(',')
+    }
   }
 
   private getLookupFieldRecord(){

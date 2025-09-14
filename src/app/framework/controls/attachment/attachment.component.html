@@ -14,7 +14,7 @@
       </div>
 
       <!-- Show uploaded file -->
-      <div *ngIf="selectedFile" class="mt-2 d-flex align-items-center">
+      <div *ngIf="selectedFile&&selectedFile.displayName" class="mt-2 d-flex align-items-center">
         <span class="me-2">{{ selectedFile.displayName }}</span>
         <button
           type="button"
