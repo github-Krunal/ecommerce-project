@@ -25,6 +25,13 @@ export class DropdownFieldComponent {
   }
   private initializeForm(){
     this.addControlInForm();
+    this.getDropdownOption();
+ }
+
+ private getDropdownOption(){
+  if(this.field.options&&this.field.options.length>0){
+    this.dropdownOptions=this.field.options;
+  }
  }
 
  private getFormValue(){
