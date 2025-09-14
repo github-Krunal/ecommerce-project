@@ -6,13 +6,15 @@ import { MultiLineFieldComponent } from './multi-line-field/multi-line-field.com
 import { LookUpComponent } from './look-up/look-up.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
 import { AttachmentComponent } from './attachment/attachment.component';
+import { DropdownFieldComponent } from './dropdown-field/dropdown-field.component';
 
 const COMPONENTS=[
   SingleLineFieldComponent,
   MultiLineFieldComponent,
   LookUpComponent,
   CheckBoxComponent,
-  AttachmentComponent
+  AttachmentComponent,
+  DropdownFieldComponent
 ]
 
 @NgModule({

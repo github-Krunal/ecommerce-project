@@ -3,5 +3,6 @@ export enum FieldTypeEnum{
     MULTI_LINE_FIELD="multi-line-field",
     LOOK_UP_FIELD="look-up",
     CHECKBOX_FIELD="check-box",
-    ATTACHMENT_FIELD="attachment"
+    ATTACHMENT_FIELD="attachment",
+    DROPDOWN_FIELD="dropdown"
 }

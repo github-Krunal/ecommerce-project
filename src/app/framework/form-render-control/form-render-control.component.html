@@ -57,5 +57,16 @@
     </attachment>
   </div>
 
+    <!-- dropdown  Field -->
+    <div *ngIf="field?.fieldType === fieldTypeEnum.DROPDOWN_FIELD"
+    [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+    [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+    <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+      <mat-icon (click)="deleteField(index)">close</mat-icon>
+    </div>
+    <dropdown-field [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
+    </dropdown-field>
+  </div>
+
   </ng-container>
 </div>

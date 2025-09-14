@@ -51,6 +51,10 @@ export class FrameworkFormCreateComponent {
     {
       icon:"add",
       Name:"Attachment Field"
+    },
+    {
+      icon:"add",
+      Name:"Dropdown Field"
     }
   ]
 
@@ -101,6 +105,8 @@ export class FrameworkFormCreateComponent {
         return FieldTypeEnum.CHECKBOX_FIELD;
         case 'Attachment Field':
         return FieldTypeEnum.ATTACHMENT_FIELD;
+        case 'Dropdown Field':
+        return FieldTypeEnum.DROPDOWN_FIELD;
       default:
         return FieldTypeEnum.SINGLE_LINE_FIELD;
     }
