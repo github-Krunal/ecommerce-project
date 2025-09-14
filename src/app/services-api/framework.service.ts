@@ -54,4 +54,7 @@ export class FrameworkService {
     }
     return this.http.post<IAttachmentResponse>(API_CONSTANT.ATTACHMENT_UPLOAD, formData)
   }
+  public deleteAttachment(URL:string): Observable<IAttachmentResponse> {
+    return this.http.delete<IAttachmentResponse>(API_CONSTANT.ATTACHMENT_DELETE+'/'+URL)
+  }
 }

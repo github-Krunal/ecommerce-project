@@ -1,6 +1,6 @@
 import { FrameworkService } from './../../../services-api/framework.service';
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FieldDefination } from '../../../model/fieldDefination.interface';
 import { ANGULARMATERIALModule } from '../../../module/angular-material.module';
@@ -19,7 +19,11 @@ export class AttachmentComponent {
   @Input() field!: FieldDefination;
   @Input() frameworkForm!: FormGroup;
   @Input() isViewRecord: boolean=false;
+
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   protected fieldValue:string="";
+  protected selectedFile:{displayName:string,fileURL:string}={displayName:'',fileURL:''};
 
   constructor (private frameworkService:FrameworkService){}
 
@@ -56,7 +60,18 @@ private handleFiles(fileList: FileList): void {
 
 private uploadFiles(files: File[]): void {
   this.frameworkService.uploadAttachment(files[0]).subscribe((attachmentResponse:IAttachmentResponse) => {
-    this.frameworkForm.get(this.field.formControlName)?.setValue(attachmentResponse.fileurl)
+    this.frameworkForm.get(this.field.formControlName)?.setValue(attachmentResponse.fileurl);
+    this.selectedFile.displayName=files[0].name;
+    this.selectedFile.fileURL=attachmentResponse.fileurl;
   });
+}
+
+protected removeFile(){
+  const internalName=this.selectedFile.fileURL.replace(/attachments\\/, '');
+  this.frameworkService.deleteAttachment(internalName).subscribe((attachmentResponse:IAttachmentResponse)=>{
+    this.selectedFile={displayName:'',fileURL:''};
+    this.frameworkForm.get(this.field.formControlName)?.setValue('');
+    this.fileInput.nativeElement.value=null;
+  })
 }
 }

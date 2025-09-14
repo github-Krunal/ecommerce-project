@@ -3,6 +3,7 @@ const API_URL = SERVER_URL + 'api/';
 export const API_CONSTANT = {
   BANNER_OFFER: API_URL + 'bannerOffer',
   ATTACHMENT_UPLOAD: API_URL + 'uploadAttachment',
+  ATTACHMENT_DELETE: API_URL + 'deleteAttachment',
   REPOSITORY_SAVE: API_URL + 'repository',
   REPOSITORY_LIST: API_URL + 'repository-list',
   REPOSITORY_DELETE: API_URL + 'delete-repository',
