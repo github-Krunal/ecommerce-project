@@ -57,4 +57,10 @@ export class FrameworkService {
   public deleteAttachment(URL:string): Observable<IAttachmentResponse> {
     return this.http.delete<IAttachmentResponse>(API_CONSTANT.ATTACHMENT_DELETE+'/'+URL)
   }
+
+  public downloadAttachment(filename: string) {
+    return this.http.get(`${API_CONSTANT.ATTACHMENT_DOWNLOAD}/${encodeURIComponent(filename)}`, {
+      responseType: 'blob'  // 👈 Important for file download
+    });
+  }
 }

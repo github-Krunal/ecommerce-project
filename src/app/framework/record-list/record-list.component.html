@@ -21,7 +21,14 @@
     <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.internalName">
       <ng-container *ngIf="column.internalName!='Action'">
       <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
-      <td mat-cell *matCellDef="let row">{{ row[column.internalName] }}</td>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="column.fieldType===fieldTypeEnum.ATTACHMENT_FIELD">
+          <button type="button" class="btn btn-link" (click)="downloadFile(row[column.internalName])">{{ utilityService.formatAttachmentName(row[column.internalName]) }}</button>
+        </ng-container>
+        <ng-container *ngIf="column.fieldType!=fieldTypeEnum.ATTACHMENT_FIELD">
+          {{ row[column.internalName] }}
+        </ng-container>
+        </td>
     </ng-container>
     <ng-container *ngIf="column.internalName==='Action'">
         <th mat-header-cell *matHeaderCellDef> </th>

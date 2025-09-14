@@ -1,3 +1,4 @@
+import { UtilityService } from './../../../global-service/utility.service';
 import { FrameworkService } from './../../../services-api/framework.service';
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
@@ -25,7 +26,7 @@ export class AttachmentComponent {
   protected fieldValue:string="";
   protected selectedFile:{displayName:string,fileURL:string}={displayName:'',fileURL:''};
 
-  constructor (private frameworkService:FrameworkService){}
+  constructor (private frameworkService:FrameworkService,private utilityService:UtilityService){}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -36,7 +37,8 @@ export class AttachmentComponent {
 
  private getFormValue(){
    this.frameworkForm.get(this.field.formControlName)?.valueChanges.subscribe(value => {
-     this.fieldValue=value;
+     this.selectedFile.displayName=this.utilityService.formatAttachmentName(value);
+     this.selectedFile.fileURL=value;
    });
  }
 
@@ -66,12 +68,16 @@ private uploadFiles(files: File[]): void {
   });
 }
 
-protected removeFile(){
-  const internalName=this.selectedFile.fileURL.replace(/attachments\\/, '');
-  this.frameworkService.deleteAttachment(internalName).subscribe((attachmentResponse:IAttachmentResponse)=>{
-    this.selectedFile={displayName:'',fileURL:''};
-    this.frameworkForm.get(this.field.formControlName)?.setValue('');
-    this.fileInput.nativeElement.value=null;
-  })
+  protected removeFile() {
+    const internalName = this.selectedFile.fileURL.replace(/attachments\\/, '');
+    this.frameworkService.deleteAttachment(internalName).subscribe((attachmentResponse: IAttachmentResponse) => {
+      this.selectedFile = { displayName: '', fileURL: '' };
+      this.frameworkForm.get(this.field.formControlName)?.setValue('');
+      this.fileInput.nativeElement.value = null;
+    })
+  }
+
+protected downloadFile(){
+  this.utilityService.downloadAttachment(this.selectedFile.fileURL)
 }
 }

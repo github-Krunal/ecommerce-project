@@ -27,6 +27,8 @@
   </div>
   <ng-container *ngIf="isViewRecord">
     <div class=" fw-bold">{{field.displayName}}</div>
-    <div >{{fieldValue}}</div>
+    <div>
+      <button type="button" class="btn btn-link" (click)="downloadFile()">{{selectedFile.displayName}}</button>
+    </div>
   </ng-container>
 </ng-container>

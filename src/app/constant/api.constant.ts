@@ -4,6 +4,7 @@ export const API_CONSTANT = {
   BANNER_OFFER: API_URL + 'bannerOffer',
   ATTACHMENT_UPLOAD: API_URL + 'uploadAttachment',
   ATTACHMENT_DELETE: API_URL + 'deleteAttachment',
+  ATTACHMENT_DOWNLOAD: API_URL + 'downloadAttachment',
   REPOSITORY_SAVE: API_URL + 'repository',
   REPOSITORY_LIST: API_URL + 'repository-list',
   REPOSITORY_DELETE: API_URL + 'delete-repository',

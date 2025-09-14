@@ -1,3 +1,5 @@
+import { UtilityService } from './../../global-service/utility.service';
+import { FieldTypeEnum } from './../../enum/fieldType.enum';
 import { IRepositoryDefination } from './../../model/repositoryDefination.interface';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,15 +22,16 @@ import { FrameworkTableComponent } from '../framework-table/framework-table.comp
 })
 export class RecordListComponent {
   public businessObject:IRepositoryDefination | undefined;
-  tableColumns: {displayName:string,internalName:string}[] = [];
+  tableColumns: {displayName:string,internalName:string,fieldType:FieldTypeEnum|null}[] = [];
   dataSource = new MatTableDataSource<any>([]);
   public repositoryID:string="";
   public isOpenSideNav:boolean=false;
   public displayedColumns:string[]=[];
   public recordID:string="";
   public isViewRecord:boolean=false;
+  protected fieldTypeEnum = FieldTypeEnum;
 
-  constructor(private route: ActivatedRoute,public frameworkService:FrameworkService){}
+  constructor(private route: ActivatedRoute,public frameworkService:FrameworkService,public utilityService:UtilityService){}
 
   ngOnInit() {
     this.repositoryID = this.route.snapshot.paramMap.get('id')??'';
@@ -47,7 +50,8 @@ export class RecordListComponent {
     if(fieldDefination&&fieldDefination.length>0){
       this.tableColumns = fieldDefination.map(field => ({
         displayName: field.displayName,
-        internalName: field.formControlName
+        internalName: field.formControlName,
+        fieldType:field.fieldType
       }));
       this.displayedColumns = this.tableColumns.map(col => col.internalName);
       this.addActionColumn()
@@ -56,7 +60,7 @@ export class RecordListComponent {
   }
 
   private addActionColumn(){
-    this.tableColumns.unshift({displayName:"Action",internalName:"Action"});
+    this.tableColumns.unshift({displayName:"Action",internalName:"Action",fieldType:null});
     this.displayedColumns.unshift('Action')
   }
 
@@ -89,5 +93,9 @@ export class RecordListComponent {
     this.isOpenSideNav=true;
     this.recordID=id;
     this.isViewRecord=true;
+  }
+
+  public downloadFile(attachmentURL:string){
+    this.utilityService.downloadAttachment(attachmentURL)
   }
 }
