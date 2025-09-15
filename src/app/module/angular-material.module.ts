@@ -17,6 +17,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const ANGULAR_MATERIAL_MODULE=[
   MatSelectModule,
@@ -35,7 +37,9 @@ const ANGULAR_MATERIAL_MODULE=[
   MatAutocompleteModule,
   MatChipsModule,
   FormsModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 
 @NgModule({

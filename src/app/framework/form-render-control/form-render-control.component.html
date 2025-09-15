@@ -68,5 +68,16 @@
     </dropdown-field>
   </div>
 
+    <!-- Date  Field -->
+    <div *ngIf="field?.fieldType === fieldTypeEnum.DATE_FIELD"
+    [ngClass]="isFieldDefinationCreate ? 'card p-3 ps-4 pe-4 mb-3' : ''" cdkDrag
+    [cdkDragDisabled]="!isFieldDefinationCreate" (click)="selectedField(field)">
+    <div class="field-action-icon" *ngIf="isFieldDefinationCreate">
+      <mat-icon (click)="deleteField(index)">close</mat-icon>
+    </div>
+    <date-field [field]="field" [frameworkForm]="frameworkForm" [isViewRecord]="isViewRecord">
+    </date-field>
+  </div>
+
   </ng-container>
 </div>

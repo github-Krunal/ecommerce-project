@@ -7,6 +7,7 @@ import { LookUpComponent } from './look-up/look-up.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
 import { AttachmentComponent } from './attachment/attachment.component';
 import { DropdownFieldComponent } from './dropdown-field/dropdown-field.component';
+import { DateFieldComponent } from './date-field/date-field.component';
 
 const COMPONENTS=[
   SingleLineFieldComponent,
@@ -14,7 +15,8 @@ const COMPONENTS=[
   LookUpComponent,
   CheckBoxComponent,
   AttachmentComponent,
-  DropdownFieldComponent
+  DropdownFieldComponent,
+  DateFieldComponent
 ]
 
 @NgModule({

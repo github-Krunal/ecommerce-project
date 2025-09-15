@@ -4,5 +4,6 @@ export enum FieldTypeEnum{
     LOOK_UP_FIELD="look-up",
     CHECKBOX_FIELD="check-box",
     ATTACHMENT_FIELD="attachment",
-    DROPDOWN_FIELD="dropdown"
+    DROPDOWN_FIELD="dropdown",
+    DATE_FIELD="date"
 }
